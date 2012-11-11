@@ -127,8 +127,8 @@ class Bitcoind
      */
     public function getBlock($hash)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('getblock', $hash);
+        return $response->result;
     }
 
     /**
@@ -283,10 +283,15 @@ class Bitcoind
         return $response->result;
     }
 
-    public function getRawTransaction()
+    /**
+     * @param string $txid
+     * @param integer $verbose
+     * @return array
+     */
+    public function getRawTransaction($txid, $verbose = 0)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('getrawtransaction', array($txid, $verbose));
+        return $response->result;
     }
 
     /**
@@ -324,8 +329,8 @@ class Bitcoind
      */
     public function getTransaction($txid)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('gettransaction', $txid);
+        return $response->result;
     }
 
     public function getWork()
