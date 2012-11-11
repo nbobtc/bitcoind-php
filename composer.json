@@ -1,0 +1,36 @@
+{
+    "name": "nbobtc/bitcoind-php",
+    "homepage": "https://github.com/nbobtc/bitcoind-php",
+    "type": "library",
+    "description": "PHP Wrapper for a bitcoind daemon",
+    "keywords": ["bitcoin", "bitcoind"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Estes"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/nbobtc/bitcoind-php/issues",
+        "wiki": "https://github.com/nbobtc/bitcoind-php/wiki",
+        "source": "https://github.com/nbobtc/bitcoind-php"
+    },
+    "autoload": {
+        "psr-0": { "Nbobtc": "src/" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.8.x-dev"
+    },
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
