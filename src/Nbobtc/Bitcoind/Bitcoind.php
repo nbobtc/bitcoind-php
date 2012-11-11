@@ -533,7 +533,13 @@ class Bitcoind
         $response = curl_exec($ch);
         curl_close($ch);
 
-        return json_decode($response);
+        $stdClass = json_decode($response);
+
+        if (!empty($stdClass->error)) {
+            throw new \Exception($stdClass->error->message, $stdClass->error->code);
+        }
+
+        return $stdClass;
     }
 
 }
