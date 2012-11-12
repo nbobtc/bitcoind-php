@@ -144,10 +144,10 @@ class Bitcoind
 
     /**
      */
-    public function getBlockHash()
+    public function getBlockHash($index)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('getblockhash', $index);
+        return $response->result;
     }
 
     /**
