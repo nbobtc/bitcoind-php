@@ -202,7 +202,7 @@ class Bitcoind
     public function getInfo()
     {
         $response = $this->sendRequest('getinfo');
-        return $response;
+        return $response->result;
     }
 
     public function getMemoryPool($data = null)
