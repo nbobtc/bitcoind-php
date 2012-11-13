@@ -70,11 +70,13 @@ class Bitcoind
 
     /**
      * @param string $bitcoinaddress
+     *
+     * @return
      */
     public function dumpPrivKey($bitcoinaddress)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('dumpprivkey', $bitcoinaddress);
+        return $response->result;
     }
 
     public function encryptWallet()
@@ -97,7 +99,7 @@ class Bitcoind
      */
     public function getAccountAddress($account)
     {
-        $response = $this->sendRequest('getaccountaddress', $account);
+        $response = $this->sendRequest('getaccountaddress', (string) $account);
         return $response->result;
     }
 
@@ -340,16 +342,26 @@ class Bitcoind
         return $response;
     }
 
-    public function importPrivKey()
+    /**
+     * @param string $bitcoinprivkey
+     * @param string $label
+     *
+     * @return
+     */
+    public function importPrivKey($bitcoinprivkey, $label = '')
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('importprivkey', array($bitcoinprivkey, $label));
+        return $response->result;
     }
 
+    /**
+     * NOTE: Must run walletPassphrase method before this
+     * @return null
+     */
     public function keypoolRefill()
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('keypoolrefill');
+        return $response->result;
     }
 
     /**
@@ -495,14 +507,20 @@ class Bitcoind
 
     public function walletLock()
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('walletlock');
+        return $response->result;
     }
 
-    public function walletPassphrase()
+    /**
+     * @param string $passphrase
+     * @param integer $timeout
+     *
+     * @return null
+     */
+    public function walletPassphrase($passphrase, $timeout = 5)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('walletpassphrase', array($passphrase, $timeout));
+        return $response->result;
     }
 
     public function walletPassphraseChange()
@@ -540,6 +558,10 @@ class Bitcoind
         ));
         $response = curl_exec($ch);
         curl_close($ch);
+
+        if (false === $response) {
+            throw new \Exception('The server is not available.');
+        }
 
         $stdClass = json_decode($response);
 
