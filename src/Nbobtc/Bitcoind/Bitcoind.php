@@ -301,7 +301,7 @@ class Bitcoind
      * @param string $account
      * @param integer $minconf
      *
-     * @return
+     * @return float
      */
     public function getReceivedByAccount($account = '', $minconf = 1)
     {
@@ -396,10 +396,17 @@ class Bitcoind
         return $response;
     }
 
-    public function listTransactions()
+    /**
+     * @param string|null $account
+     * @param integer $count
+     * @param integer $from
+     *
+     * @return array
+     */
+    public function listTransactions($account, $count = 10, $from = 0)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('listtransactions', array((string) $account, $count, $from));
+        return $response->result;
     }
 
     public function listUnspent()
