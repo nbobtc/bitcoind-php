@@ -305,7 +305,7 @@ class Bitcoind
      */
     public function getReceivedByAccount($account = '', $minconf = 1)
     {
-        $response = $this->sendRequest('getreceivedbyaccount', array($account, $minconf));
+        $response = $this->sendRequest('getreceivedbyaccount', array((string) $account, $minconf));
         return $response->result;
     }
 
