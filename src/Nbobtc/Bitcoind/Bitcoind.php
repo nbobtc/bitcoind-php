@@ -97,8 +97,8 @@ class Bitcoind
      */
     public function getAccountAddress($account)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('getaccountaddress', $account);
+        return $response->result;
     }
 
     /**
@@ -106,8 +106,8 @@ class Bitcoind
      */
     public function getAddressesByAccount($account)
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('getaddressesbyaccount', $account);
+        return $response->result;
     }
 
     /**
@@ -118,7 +118,7 @@ class Bitcoind
      */
     public function getBalance($account = '', $minconf = 1)
     {
-        $response = $this->sendRequest('getbalance', array($account, $minconf));
+        $response = $this->sendRequest('getbalance', array((string) $account, $minconf));
         return $response->result;
     }
 
