@@ -243,8 +243,8 @@ class Bitcoind
      */
     public function getNewAddress($account = '')
     {
-        $response = $this->sendRequest('getnewaddress', $account);
-        return $response;
+        $response = $this->sendRequest('getnewaddress', (string) $account);
+        return $response->result;
     }
 
     /**
