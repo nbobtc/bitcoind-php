@@ -338,8 +338,8 @@ class Bitcoind
 
     public function getWork()
     {
-        $response = $this->sendRequest('');
-        return $response;
+        $response = $this->sendRequest('getwork');
+        return $response->result;
     }
 
     /**
