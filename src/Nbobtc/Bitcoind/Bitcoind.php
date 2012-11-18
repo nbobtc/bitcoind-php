@@ -336,9 +336,9 @@ class Bitcoind
         return $response->result;
     }
 
-    public function getWork()
+    public function getWork($data = null)
     {
-        $response = $this->sendRequest('getwork');
+        $response = $this->sendRequest('getwork', $data);
         return $response->result;
     }
 
