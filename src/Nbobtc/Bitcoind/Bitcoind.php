@@ -5,7 +5,7 @@ namespace Nbobtc\Bitcoind;
 /**
  * @author Joshua Estes
  */
-class Bitcoind
+class Bitcoind implements BitcoindInterface
 {
 
     protected $schema;
@@ -15,14 +15,15 @@ class Bitcoind
     protected $port;
 
     /**
+     * @param string $schema
      * @param string $user
      * @param string $password
      * @param string $host
      * @param integer $port
      */
-    public function __construct($user, $password, $host = '127.0.0.1', $port = 8332)
+    public function __construct($schema = 'https', $user, $password, $host = '127.0.0.1', $port = 8332)
     {
-        $this->schema   = 'http';
+        $this->schema   = $schema;
         $this->user     = $user;
         $this->password = $password;
         $this->host     = $host;
