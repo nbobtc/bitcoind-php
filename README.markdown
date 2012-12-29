@@ -24,8 +24,8 @@ To use the project you need to just create a new instance of the class.
 
     $bitcoind = new Bitcoind('https', 'username', 'password', '127.0.0.1', 8332);
 
-You can view the [BitcoindInterface](src/Nbobtc/Bitcoind/BitcoindInterface.php) file
-for a list of methods and descriptions of what they are and how to use them.
+You can view the [BitcoindInterface](https://github.com/nbobtc/bitcoind-php/blob/master/src/Nbobtc/Bitcoind/BitcoindInterface.php)
+file for a list of methods and descriptions of what they are and how to use them.
 
 ## License (MIT)
 
