@@ -93,7 +93,7 @@ interface BitcoindInterface
 
     /**
      * @param integer $index
-     * @return
+     * @return string
      */
     public function getblockhash($index);
 
@@ -124,7 +124,25 @@ interface BitcoindInterface
     public function gethashespersec();
 
     /**
-     * @return
+     * Returns an object containing various state info.
+     *
+     * The stdClass:
+     * (int) $version
+     * (int) $protocolversion
+     * (int) $walletversion
+     * (double) $balance
+     * (int) $blocks
+     * (int) $connections
+     * (string) $proxy
+     * (double) $difficulty
+     * (bool) $testnet
+     * (int) $keypoololdest
+     * (int) $keypoolsize
+     * (double) $paytxfee
+     * (int) $unlocked_until
+     *
+     *
+     * @return \stdClass
      */
     public function getinfo();
 
