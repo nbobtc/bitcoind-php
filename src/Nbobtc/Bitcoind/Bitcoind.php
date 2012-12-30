@@ -31,7 +31,7 @@ class Bitcoind implements BitcoindInterface
     }
 
     /**
-     * @param string $command
+     * @inheritdoc
      */
     public function help($command = null)
     {
@@ -39,14 +39,17 @@ class Bitcoind implements BitcoindInterface
         return $response->result;
     }
 
-    public function addmultisigaddress()
+    /**
+     * @inheritdoc
+     */
+    public function addmultisigaddress($nrequired, $keys, $account = null)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
     /**
-     * @param string $destination
+     * @inheritdoc
      */
     public function backupWallet($destination)
     {
@@ -54,72 +57,80 @@ class Bitcoind implements BitcoindInterface
         return $response;
     }
 
-    public function createRawTransaction()
+    /**
+     * @inheritdoc
+     */
+    public function createmultisig()
+    {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function createrawtransaction()
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
     /**
-     * @param string $hexstring
+     * @inheritdoc
      */
-    public function decodeRawTransaction($hexstring)
+    public function decoderawtransaction($hex)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
     /**
-     * @param string $bitcoinaddress
-     *
-     * @return
+     * @inheritdoc
      */
-    public function dumpPrivKey($bitcoinaddress)
+    public function dumpprivkey($address)
     {
-        $response = $this->sendRequest('dumpprivkey', $bitcoinaddress);
-        return $response->result;
-    }
-
-    public function encryptWallet()
-    {
-        $response = $this->sendRequest('');
-        return $response;
-    }
-
-    /**
-     * @param string $bitcoinaddress
-     */
-    public function getAccount($bitcoinaddress)
-    {
-        $response = $this->sendRequest('getaccount', $bitcoinaddress);
+        $response = $this->sendRequest('dumpprivkey', $address);
         return $response->result;
     }
 
     /**
-     * @param string $account
+     * @inheritdoc
      */
-    public function getAccountAddress($account)
+    public function encryptWallet($passphrase)
+    {
+        $response = $this->sendRequest('');
+        return $response;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getaccount($address)
+    {
+        $response = $this->sendRequest('getaccount', $address);
+        return $response->result;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getaccountaddress($account)
     {
         $response = $this->sendRequest('getaccountaddress', (string) $account);
         return $response->result;
     }
 
     /**
-     * @param string $account
+     * @inheritdoc
      */
-    public function getAddressesByAccount($account)
+    public function getaddressesbyaccount($account)
     {
         $response = $this->sendRequest('getaddressesbyaccount', $account);
         return $response->result;
     }
 
     /**
-     * @param string  $account
-     * @param integer $minconf
-     *
-     * @return float
+     * @inheritdoc
      */
-    public function getBalance($account = '', $minconf = 1)
+    public function getbalance($account = null, $minconf = 1)
     {
         $response = $this->sendRequest('getbalance', array((string) $account, $minconf));
 
@@ -127,89 +138,88 @@ class Bitcoind implements BitcoindInterface
     }
 
     /**
-     * @param string $hash
+     * @inheritdoc
      */
-    public function getBlock($hash)
+    public function getblock($hash)
     {
         $response = $this->sendRequest('getblock', $hash);
         return $response->result;
     }
 
     /**
-     * Returns the number of blocks in the longest block chain.
-     *
-     * @return integer
+     * @inheritdoc
      */
-    public function getBlockCount()
+    public function getblockcount()
     {
         $response = $this->sendRequest('getblockcount');
         return $response->result;
     }
 
     /**
+     * @inheritdoc
      */
-    public function getBlockHash($index)
+    public function getblockhash($index)
     {
         $response = $this->sendRequest('getblockhash', $index);
         return $response->result;
     }
 
     /**
-     * Returns the number of connections to other nodes.
-     *
-     * @return integer
+     * @inheritdoc
      */
-    public function getConnectionCount()
+    public function getblocktemplate()
+    {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getconnectioncount()
     {
         $response = $this->sendRequest('getconnectioncount');
         return $response->result;
     }
 
     /**
-     * Returns the proof-of-work difficulty as a multiple of the minimum difficulty.
-     *
-     * @return float
+     * @inheritdoc
      */
-    public function getDifficulty()
+    public function getdifficulty()
     {
         $response = $this->sendRequest('getdifficulty');
         return $response->result;
     }
 
     /**
-     * Returns true or false whether bitcoind is currently generating hashes
-     *
-     * @return boolean
+     * @inheritdoc
      */
-    public function getGenerate()
+    public function getgenerate()
     {
         $response = $this->sendRequest('getgenerate');
         return $response->result;
     }
 
     /**
-     * Returns a recent hashes per second performance measurement while generating.
-     *
-     * @return float
+     * @inheritdoc
      */
-    public function getHashesPerSec()
+    public function gethashespersec()
     {
         $response = $this->sendRequest('gethasespersec');
         return $response->result;
     }
 
     /**
-     * Returns an object containing various state info.
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function getInfo()
+    public function getinfo()
     {
         $response = $this->sendRequest('getinfo');
         return $response->result;
     }
 
-    public function getMemoryPool($data = null)
+    /**
+     * @inheritdoc
+     */
+    public function getmemorypool($data = null)
     {
         $response = $this->sendRequest('');
         return $response;
@@ -230,7 +240,7 @@ class Bitcoind implements BitcoindInterface
      *
      * @return array
      */
-    public function getMiningInfo()
+    public function getmininginfo()
     {
         $response = $this->sendRequest('getmininginfo');
         return $response->result;
@@ -245,7 +255,7 @@ class Bitcoind implements BitcoindInterface
      *
      * @return
      */
-    public function getNewAddress($account = '')
+    public function getnewaddress($account = null)
     {
         $response = $this->sendRequest('getnewaddress', (string) $account);
         return $response->result;
@@ -270,88 +280,86 @@ class Bitcoind implements BitcoindInterface
      *
      * @return array
      */
-    public function getPeerInfo()
+    public function getpeerinfo()
     {
         $response = $this->sendRequest('getpeerinfo');
         return $response->result;
     }
 
     /**
-     * Returns all transaction ids in memory pool
-     *
-     * @return
+     * @inheritdoc
      */
-    public function getRawMemPool()
+    public function getrawmempool()
     {
         $response = $this->sendRequest('getrawmempool');
         return $response->result;
     }
 
     /**
-     * @param string $txid
-     * @param integer $verbose
-     * @return array
+     * @inheritdoc
      */
-    public function getRawTransaction($txid, $verbose = 0)
+    public function getrawtransaction($txid, $verbose = false)
     {
-        $response = $this->sendRequest('getrawtransaction', array($txid, $verbose));
+        $response = $this->sendRequest('getrawtransaction', array($txid, (integer) $verbose));
         return $response->result;
     }
 
     /**
-     * Returns the total amount received by addresses with [account] in transactions with at least [minconf] confirmations. If [account] not provided return will include all transactions to all accounts. (version 0.3.24)
-     *
-     * @param string $account
-     * @param integer $minconf
-     *
-     * @return float
+     * @inheritdoc
      */
-    public function getReceivedByAccount($account = '', $minconf = 1)
+    public function getreceivedbyaccount($account = null, $minconf = 1)
     {
         $response = $this->sendRequest('getreceivedbyaccount', array((string) $account, $minconf));
         return $response->result;
     }
 
     /**
-     * Returns the total amount received by <bitcoinaddress> in transactions with at least [minconf] confirmations. While some might consider this obvious, value reported by this only considers *receiving* transactions. It does not check payments that have been made *from* this address. In other words, this is not "getaddressbalance". Works only for addresses in the local wallet, external addresses will always show 0.
-     *
-     * @param string $bitcoinaddress
-     * @param integer $minconf
-     *
-     * @return
+     * @inheritdoc
      */
-    public function getReceivedByAddress($bitcoinaddress, $minconf = 1)
+    public function getreceivedbyaddress($address = null, $minconf = 1)
     {
         $response = $this->sendRequest('getreceivedbyaddress', array($bitcoinaddress, $minconf));
         return $response->result;
     }
 
     /**
-     * @param string $txid
-     *
-     * @return
+     * @inheritdoc
      */
-    public function getTransaction($txid)
+    public function gettransaction($txid)
     {
         $response = $this->sendRequest('gettransaction', $txid);
         return $response->result;
     }
 
-    public function getWork($data = null)
+    /**
+     * @inheritdoc
+     */
+    public function gettxout()
+    {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function gettxoutsetinfo()
+    {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getwork($data = null)
     {
         $response = $this->sendRequest('getwork', $data);
         return $response->result;
     }
 
     /**
-     * @param string $bitcoinprivkey
-     * @param string $label
-     *
-     * @return
+     * @inheritdoc
      */
-    public function importPrivKey($bitcoinprivkey, $label = '')
+    public function importprivkey($privkey, $label = null)
     {
-        $response = $this->sendRequest('importprivkey', array($bitcoinprivkey, $label));
+        $response = $this->sendRequest('importprivkey', array($bitcoinprivkey, (string) $label));
         return $response->result;
     }
 
@@ -359,7 +367,7 @@ class Bitcoind implements BitcoindInterface
      * NOTE: Must run walletPassphrase method before this
      * @return null
      */
-    public function keypoolRefill()
+    public function keypoolrefill()
     {
         $response = $this->sendRequest('keypoolrefill');
         return $response->result;
@@ -378,7 +386,7 @@ class Bitcoind implements BitcoindInterface
      *
      * @return array
      */
-    public function listAccounts($minconf = 1)
+    public function listaccounts($minconf = 1)
     {
         $response = $this->sendRequest('listaccounts', $minconf);
         $accounts = array();
@@ -391,140 +399,219 @@ class Bitcoind implements BitcoindInterface
         return $accounts;
     }
 
-    public function listReceivedByAccount()
+    /**
+     * @inheritdoc
+     */
+    public function listaddressgroupings()
     {
-        $response = $this->sendRequest('');
-        return $response;
     }
 
-    public function listReceivedByAddress()
+    /**
+     * @inheritdoc
+     */
+    public function listlockunspent()
     {
-        $response = $this->sendRequest('');
-        return $response;
     }
 
-    public function listSinceBlock()
+    /**
+     * @inheritdoc
+     */
+    public function listreceivedbyaccount($minconf = 1, $includeempty = false)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
     /**
-     * @param string|null $account
-     * @param integer $count
-     * @param integer $from
-     *
-     * @return array
+     * @inheritdoc
      */
-    public function listTransactions($account, $count = 10, $from = 0)
+    public function listreceivedbyaddress($minconf = 1, $includeempty = false)
+    {
+        $response = $this->sendRequest('');
+        return $response;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function listsinceblock($hash = null, $minconf = 1)
+    {
+        $response = $this->sendRequest('');
+        return $response;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function listtransactions($account = null, $count = 10, $from = 0)
     {
         $response = $this->sendRequest('listtransactions', array((string) $account, $count, $from));
         return $response->result;
     }
 
-    public function listUnspent()
+    /**
+     * @inheritdoc
+     */
+    public function listunspent($minconf = 1, $maxconf = 999999)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function move()
+    /**
+     * @inheritdoc
+     */
+    public function lockunspent()
+    {
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function move($fromaccount, $toaccount, $amount, $minconf = 1, $comment = null, $commentto = null)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function sendFrom()
+    /**
+     * @inheritdoc
+     */
+    public function sendfrom($account, $address, $amount, $minconf = 1, $comment = null, $commentto = null)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function sendMany()
+    /**
+     * @inheritdoc
+     */
+    public function sendmany($fromaccount, array $addresses, $minconf = 1, $comment = null)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function sendRawTransaction()
+    /**
+     * @inheritdoc
+     */
+    public function sendrawtransaction($hex)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function sendToAddress()
+    /**
+     * @inheritdoc
+     */
+    public function sendtoaddress($address, $amount, $comment = null, $commentto = null)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function setAccount()
+    /**
+     * @inheritdoc
+     */
+    public function setaccount($address, $account)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function setGenerate()
+    /**
+     * @inheritdoc
+     */
+    public function setgenerate($generate, $genproclimit = -1)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function signMessage()
+    /**
+     * @inheritdoc
+     */
+    public function settxfee($amount)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function signRawTransaction()
+    /**
+     * @inheritdoc
+     */
+    public function signmessage($address, $message)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function setTxFee()
+    /**
+     * @inheritdoc
+     */
+    public function signrawtransaction($hex, $txinfo, $keys)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function stop()
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function validateAddress()
+    /**
+     * @inheritdoc
+     */
+    public function submitblock()
+    {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function validateaddress($address)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function verifyMessage()
+    /**
+     * @inheritdoc
+     */
+    public function verifymessage($address, $signature, $message)
     {
         $response = $this->sendRequest('');
         return $response;
     }
 
-    public function walletLock()
+    /**
+     * @inheritdoc
+     */
+    public function walletlock()
     {
         $response = $this->sendRequest('walletlock');
         return $response->result;
     }
 
     /**
-     * @param string $passphrase
-     * @param integer $timeout
-     *
-     * @return null
+     * @inheritdoc
      */
-    public function walletPassphrase($passphrase, $timeout = 5)
+    public function walletpassphrase($passphrase, $timeout)
     {
         $response = $this->sendRequest('walletpassphrase', array($passphrase, $timeout));
         return $response->result;
     }
 
-    public function walletPassphraseChange()
+    /**
+     * @inheritdoc
+     */
+    public function walletpassphrasechange($oldpassphrase, $newpassphrase)
     {
         $response = $this->sendRequest('');
         return $response;
