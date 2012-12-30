@@ -1,3 +1,5 @@
-composer.lock
 bin/
+cache/
+docs/
 vendor/
+composer.lock
