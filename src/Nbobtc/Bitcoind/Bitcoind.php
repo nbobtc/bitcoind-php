@@ -132,7 +132,7 @@ class Bitcoind implements BitcoindInterface
      */
     public function getbalance($account = null, $minconf = 1)
     {
-        $response = $this->sendRequest('getbalance', array((string) $account, $minconf));
+        $response = $this->sendRequest('getbalance', array((string) $account, (integer) $minconf));
 
         return $response->result;
     }
@@ -253,7 +253,7 @@ class Bitcoind implements BitcoindInterface
      *
      * @param string|null $account
      *
-     * @return
+     * @return string
      */
     public function getnewaddress($account = null)
     {
@@ -388,7 +388,7 @@ class Bitcoind implements BitcoindInterface
      */
     public function listaccounts($minconf = 1)
     {
-        $response = $this->sendRequest('listaccounts', $minconf);
+        $response = $this->sendRequest('listaccounts', (integer) $minconf);
         $accounts = array();
         foreach ($response->result as $account => $balance) {
             $accounts[] = array(

@@ -232,7 +232,7 @@ interface BitcoindInterface
 
     /**
      * @param interger $minconf
-     * @return
+     * @return array
      */
     public function listaccounts($minconf = 1);
 
