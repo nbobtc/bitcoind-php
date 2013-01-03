@@ -632,7 +632,7 @@ class Bitcoind implements BitcoindInterface
     public function sendRequest($method, $params = null, $id = null)
     {
         if (null === $this->client) {
-            $this->client = new Client(sprintf('%s://%s:%s@%s:%s', $this->schema, $this->user, $this->password, $this->host, $this->port))
+            $this->client = new Client(sprintf('%s://%s:%s@%s:%s', $this->schema, $this->user, $this->password, $this->host, $this->port));
         }
 
         return $this->client->execute($method, $params, $id);
