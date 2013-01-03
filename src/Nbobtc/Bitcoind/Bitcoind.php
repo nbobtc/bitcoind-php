@@ -2,6 +2,8 @@
 
 namespace Nbobtc\Bitcoind;
 
+use Nbobtc\Bitcoind\Client;
+
 /**
  * @author Joshua Estes
  */
@@ -624,40 +626,16 @@ class Bitcoind implements BitcoindInterface
      * @param string       $method
      * @param string|array $params
      * @param string       $id
+     * @throw Exception
      * @return StdClass
      */
     public function sendRequest($method, $params = null, $id = null)
     {
-        $url = sprintf('%s://%s:%s@%s:%s', $this->schema, $this->user, $this->password, $this->host, $this->port);
-        $ch  = curl_init($url);
-
-        if (null === $params) {
-            $params = array();
-        } elseif (!empty($params) && !is_array($params)) {
-            $params = array($params);
+        if (null === $this->client) {
+            $this->client = new Client(sprintf('%s://%s:%s@%s:%s', $this->schema, $this->user, $this->password, $this->host, $this->port))
         }
 
-        $json = json_encode(array('method' => $method, 'params' => $params, 'id' => $id));
-        curl_setopt_array($ch, array(
-            CURLOPT_POST           => true,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER     => array('Content-type: application/json'),
-            CURLOPT_POSTFIELDS     => $json,
-        ));
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        if (false === $response) {
-            throw new \Exception('The server is not available.');
-        }
-
-        $stdClass = json_decode($response);
-
-        if (!empty($stdClass->error)) {
-            throw new \Exception($stdClass->error->message, $stdClass->error->code);
-        }
-
-        return $stdClass;
+        return $this->client->execute($method, $params, $id);
     }
 
 }
