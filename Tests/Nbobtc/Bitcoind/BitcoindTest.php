@@ -96,7 +96,19 @@ class BitcoindTest extends \PHPUnit_Framework_TestCase
 
     public function testGetinfo()
     {
-        $this->markTestIncomplete();
+        $response = (object) array(
+            'error' => null,
+            'id' => null,
+            'result' => (object) array('balance' => 0.0000),
+        );
+        $mock = $this->getMock('Nbobtc\Bitcoind\Client');
+        $mock->expects($this->any())
+            ->method('execute')
+            ->will($this->returnValue($response));
+
+        $bitcoind = new Bitcoind($mock);
+
+        $this->assertInstanceOf('stdClass', $bitcoind->getinfo());
     }
 
     public function testGetmininginfo()
@@ -184,7 +196,18 @@ class BitcoindTest extends \PHPUnit_Framework_TestCase
 
     public function testListaccounts()
     {
-        $this->markTestIncomplete();
+        $response = (object) array(
+            'error' => null,
+            'id' => null,
+            'result' => array(),
+        );
+        $mock = $this->getMock('Nbobtc\Bitcoind\Client');
+        $mock->expects($this->any())
+            ->method('execute')
+            ->will($this->returnValue($response));
+
+        $bitcoind = new Bitcoind($mock);
+        $this->assertInternalType('array', $bitcoind->listaccounts());
     }
 
     public function testListaddressbygroupings()

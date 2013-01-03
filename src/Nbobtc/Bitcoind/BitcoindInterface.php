@@ -169,7 +169,7 @@ interface BitcoindInterface
 
     /**
      * @param string $txid
-     * @param boolean $vaerbose
+     * @param boolean $verbose
      * @return
      */
     public function getrawtransaction($txid, $verbose = false);
@@ -231,7 +231,10 @@ interface BitcoindInterface
     public function keypoolrefill();
 
     /**
-     * @param interger $minconf
+     * Returns a key => value array with the key being that
+     * of the address and the value is the balance
+     *
+     * @param integer $minconf
      * @return array
      */
     public function listaccounts($minconf = 1);
