@@ -10,6 +10,7 @@ use Nbobtc\Bitcoind\Client;
 class Bitcoind implements BitcoindInterface
 {
 
+    protected $client;
     protected $schema;
     protected $user;
     protected $password;
@@ -30,6 +31,11 @@ class Bitcoind implements BitcoindInterface
         $this->password = $password;
         $this->host     = $host;
         $this->port     = $port;
+    }
+
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
     }
 
     /**

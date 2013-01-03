@@ -1,5 +1,11 @@
 <?php
 
+use Nbobtc\Bitcoind\Bitcoind;
+use Nbobtc\Bitcoind\Client;
+
+/**
+ * @author Joshua Estes
+ */
 class BitcoindTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -150,7 +156,19 @@ class BitcoindTest extends \PHPUnit_Framework_TestCase
 
     public function testHelp()
     {
-        $this->markTestIncomplete();
+        $mock = $this->getMock('Nbobtc\Bitcoind\Client');
+        $response = new \stdClass();
+        $response->result = "addmultisigaddress <nrequired> <'[\"key\",\"key\"]'> [account]\nbackupwallet <destination>\ncreaterawtransaction [{\"txid\":txid,\"vout\":n},...] {address:amount,...}\ndecoderawtransaction <hex string>\ndumpprivkey <bitcoinaddress>\nencryptwallet <passphrase>\ngetaccount <bitcoinaddress>\ngetaccountaddress <account>\ngetaddressesbyaccount <account>\ngetbalance [account] [minconf=1]\ngetblock <hash>\ngetblockcount\ngetblockhash <index>\ngetblocktemplate [params]\ngetconnectioncount\ngetdifficulty\ngetgenerate\ngethashespersec\ngetinfo\ngetmininginfo\ngetnewaddress [account]\ngetpeerinfo\ngetrawmempool\ngetrawtransaction <txid> [verbose=0]\ngetreceivedbyaccount <account> [minconf=1]\ngetreceivedbyaddress <bitcoinaddress> [minconf=1]\ngettransaction <txid>\ngetwork [data]\nhelp [command]\nimportprivkey <bitcoinprivkey> [label]\nkeypoolrefill\nlistaccounts [minconf=1]\nlistaddressgroupings\nlistreceivedbyaccount [minconf=1] [includeempty=false]\nlistreceivedbyaddress [minconf=1] [includeempty=false]\nlistsinceblock [blockhash] [target-confirmations]\nlisttransactions [account] [count=10] [from=0]\nlistunspent [minconf=1] [maxconf=9999999]  [\"address\",...]\nmove <fromaccount> <toaccount> <amount> [minconf=1] [comment]\nsendfrom <fromaccount> <tobitcoinaddress> <amount> [minconf=1] [comment] [comment-to]\nsendmany <fromaccount> {address:amount,...} [minconf=1] [comment]\nsendrawtransaction <hex string>\nsendtoaddress <bitcoinaddress> <amount> [comment] [comment-to]\nsetaccount <bitcoinaddress> <account>\nsetgenerate <generate> [genproclimit]\nsettxfee <amount>\nsignmessage <bitcoinaddress> <message>\nsignrawtransaction <hex string> [{\"txid\":txid,\"vout\":n,\"scriptPubKey\":hex},...] [<privatekey1>,...] [sighashtype=\"ALL\"]\nstop <detach>\nsubmitblock <hex data> [optional-params-obj]\nvalidateaddress <bitcoinaddress>\nverifymessage <bitcoinaddress> <signature> <message>";
+        $response->error = null;
+        $response->id = null;
+        $mock->expects($this->any())
+            ->method('execute')
+            ->will($this->returnValue($response));
+
+        $bitcoind = new Bitcoind('http', null, null);
+        $bitcoind->setClient($mock);
+
+        $this->assertInternalType('string', $bitcoind->help());
     }
 
     public function testImpoerprivkey()
