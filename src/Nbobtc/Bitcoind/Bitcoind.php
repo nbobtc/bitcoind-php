@@ -11,26 +11,13 @@ class Bitcoind implements BitcoindInterface
 {
 
     protected $client;
-    protected $schema;
-    protected $user;
-    protected $password;
-    protected $host;
-    protected $port;
 
     /**
-     * @param string $schema
-     * @param string $user
-     * @param string $password
-     * @param string $host
-     * @param integer $port
+     * @param Client $client
      */
-    public function __construct($schema = 'https', $user, $password, $host = '127.0.0.1', $port = 8332)
+    public function __construct(Client $client = null)
     {
-        $this->schema   = $schema;
-        $this->user     = $user;
-        $this->password = $password;
-        $this->host     = $host;
-        $this->port     = $port;
+        $this->client = $client;
     }
 
     public function setClient(Client $client)

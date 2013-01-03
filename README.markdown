@@ -21,8 +21,9 @@ To use the project you need to just create a new instance of the class.
     <?php
 
     use Nbobtc\Bitcoind\Bitciond;
+    use Nbobtc\Bitcoind\Client;
 
-    $bitcoind = new Bitcoind('https', 'username', 'password', '127.0.0.1', 8332);
+    $bitcoind = new Bitcoind(new Client('https://username:password@localhost:18332'));
 
 You can view the [BitcoindInterface](https://github.com/nbobtc/bitcoind-php/blob/master/src/Nbobtc/Bitcoind/BitcoindInterface.php)
 file for a list of methods and descriptions of what they are and how to use them.
