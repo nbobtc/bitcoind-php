@@ -317,7 +317,7 @@ class Bitcoind implements BitcoindInterface
      */
     public function getreceivedbyaddress($address = null, $minconf = 1)
     {
-        $response = $this->sendRequest('getreceivedbyaddress', array($bitcoinaddress, $minconf));
+        $response = $this->sendRequest('getreceivedbyaddress', array($address, $minconf));
         return $response->result;
     }
 
@@ -434,8 +434,11 @@ class Bitcoind implements BitcoindInterface
      */
     public function listreceivedbyaddress($minconf = 1, $includeempty = false)
     {
-        $response = $this->sendRequest('listreceivedbyaddress', array($minconf, $includeempty));
-        return $response;
+        $response = $this->sendRequest('listreceivedbyaddress', array(
+            (int) $minconf,
+            $includeempty
+        ));
+        return $response->result;
     }
 
     /**
@@ -541,7 +544,7 @@ class Bitcoind implements BitcoindInterface
             $comment,
             $commentto,
         ));
-        return $response;
+        return $response->result;
     }
 
     /**

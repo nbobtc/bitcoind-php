@@ -261,7 +261,7 @@ interface BitcoindInterface
     /**
      * @param integer $minconf
      * @param boolean $includeempty
-     * @return
+     * @return array
      */
     public function listreceivedbyaddress($minconf = 1, $includeempty = false);
 
