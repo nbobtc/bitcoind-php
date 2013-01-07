@@ -14,23 +14,35 @@ interface BitcoindInterface
 {
 
     /**
+     * Add a nrequired-to-sign multisignature address to the wallet
+     * each key is a Bitcoin address or hex-encoded public key
+     * If $account is specified, assign address to $account
+     *
      * @param integer $nrequired
      * @param string|array $keys
      * @param string|null $account
-     * @return
+     * @return string
      */
     public function addmultisigaddress($nrequired, $keys, $account = null);
 
     /**
-     * @param string $destination
-     * @return
+     * Back up the current wallet. Will return true if successful
+     * or false on failure
+     *
+     * @param string $destination Path to backup location
+     * @return boolean
      */
     public function backupwallet($destination);
 
     /**
-     * @TODO
+     * Creates a multi-signature address and returns a json object
+     * with keys:
+     *     address: "bitcoin address"
+     *     redeemScript: "hex-encoded redemption script"
+     *
+     * @return
      */
-    public function createmultisig();
+    public function createmultisig($nrequired, array $keys);
 
     /**
      * @TODO
@@ -50,33 +62,46 @@ interface BitcoindInterface
     public function dumpprivkey($address);
 
     /**
+     * Encrypts the wallet with $passphrase
+     *
      * @param string $passphrase
      * @return
      */
     public function encryptwallet($passphrase);
 
     /**
+     * Returns the account associated with the given address.
+     *
      * @param string $address
-     * @return
+     * @return string
      */
     public function getaccount($address);
 
     /**
+     * Returns the current bitcoin address for receiving
+     * payments to [account]
+     *
      * @param string $account
-     * @return
+     * @return string
      */
     public function getaccountaddress($account);
 
     /**
+     * Returns the list of addresses for the given account.
+     *
      * @param string $account
-     * @return
+     * @return array
      */
     public function getaddressesbyaccount($account);
 
     /**
+     * If $account is not specified, returns the server's total
+     * available balance. If $account is specified, returns the
+     * balance in the account.
+     *
      * @param string $account
      * @param integer $minconf
-     * @return
+     * @return float
      */
     public function getbalance($account = null, $minconf = 1);
 
@@ -104,22 +129,30 @@ interface BitcoindInterface
     public function getblocktemplate();
 
     /**
-     * @return
+     * Returns the total number of peers that are connected
+     *
+     * @return integer
      */
     public function getconnectioncount();
 
     /**
-     * @return
+     * Current blockchain difficulty.
+     *
+     * @see https://en.bitcoin.it/wiki/Difficulty
+     * @return float
      */
     public function getdifficulty();
 
     /**
-     * @return
+     * If bitcoind is set to try to generate blocks it will
+     * return true, otherwise it will return false
+     *
+     * @return boolean
      */
     public function getgenerate();
 
     /**
-     * @return
+     * @return float
      */
     public function gethashespersec();
 
@@ -141,7 +174,6 @@ interface BitcoindInterface
      * (double) $paytxfee
      * (int) $unlocked_until
      *
-     *
      * @return \stdClass
      */
     public function getinfo();
@@ -152,8 +184,10 @@ interface BitcoindInterface
     public function getmininginfo();
 
     /**
-     * @param string $account
-     * @return
+     * Returns a new bitcoin address for receiving payments.
+     *
+     * @param null|string $account
+     * @return string
      */
     public function getnewaddress($account = null);
 
@@ -175,22 +209,30 @@ interface BitcoindInterface
     public function getrawtransaction($txid, $verbose = false);
 
     /**
+     * Returns the total amount received by addresses with $account
+     * in transactions with at least $minconf confirmations.
+     *
      * @param string|null $account
      * @param integer $minconf
-     * @return
+     * @return float
      */
     public function getreceivedbyaccount($account = null, $minconf = 1);
 
     /**
+     * Returns the total amount received by $address in transactions
+     * with at least $minconf confirmations.
+     *
      * @param string|null $address
      * @param integer $minconf
-     * @return
+     * @return float
      */
     public function getreceivedbyaddress($address = null, $minconf = 1);
 
     /**
-     * @param string $txid
-     * @return
+     * Get detailed information about in-wallet transaction $txid
+     *
+     * @param string $txid Transaction ID
+     * @return array
      */
     public function gettransaction($txid);
 
@@ -226,7 +268,10 @@ interface BitcoindInterface
     public function importprivkey($privkey, $label = null);
 
     /**
-     * @return
+     * Fills the keypool, returns true if successful or false
+     * if there was an error.
+     *
+     * @return boolean
      */
     public function keypoolrefill();
 
@@ -240,40 +285,61 @@ interface BitcoindInterface
     public function listaccounts($minconf = 1);
 
     /**
-     * @TODO
-     * @return
+     * Lists groups of addresses which have had their common ownership
+     * made public by common use as inputs or as the resulting change
+     * in past transactions
+     *
+     * @return array
      */
     public function listaddressgroupings();
 
     /**
-     * @TODO
-     * @return
+     * Returns list of temporarily unspendable outputs.
+     *
+     * @return boolean
      */
     public function listlockunspent();
 
     /**
-     * @param integer $minconf
-     * @param boolean $includeempty
-     * @return
+     * Returns an array of abjects containing:
+     *     account
+     *     address
+     *     confirmations
+     *
+     * @param integer $minconf Minimum number of confirmations before payments are included
+     * @param boolean $includeempty Whether to include addresses that haven't received any payments.
+     * @return array
      */
     public function listreceivedbyaccount($minconf = 1, $includeempty = false);
 
     /**
-     * @param integer $minconf
-     * @param boolean $includeempty
+     * Returns an array of objects containing:
+     *     account
+     *     address
+     *     amount
+     *     confirmations
+     *
+     * @param integer $minconf Minimum number of confirmations before payments are included
+     * @param boolean $includeempty Whether to include addresses that haven't received any payments.
      * @return array
      */
     public function listreceivedbyaddress($minconf = 1, $includeempty = false);
 
     /**
+     * Get all transactions in blocks since block $hash, or all transactions
+     * if $hash is null
+     *
      * @param string|null $hash
      * @param integer $minconf
-     * @return
+     * @return array
      */
     public function listsinceblock($hash = null, $minconf = 1);
 
     /**
-     * @return
+     * Returns up to $count most recent transactions skipping the
+     * first $from transactions for account $account.
+     *
+     * @return array
      */
     public function listtransactions($account = null, $count = 10, $from = 0);
 
@@ -283,23 +349,28 @@ interface BitcoindInterface
     public function listunspent($minconf = 1, $maxconf = 999999);
 
     /**
-     * @TODO
-     * @return
+     * Updates list of temporarily unspendable outputs.
+     *
+     * @return boolean
      */
     public function lockunspent();
 
     /**
-     * @return
+     * Move from one account in your wallet to another.
+     *
+     * @return boolean
      */
     public function move($fromaccount, $toaccount, $amount, $minconf = 1, $comment = null, $commentto = null);
 
     /**
-     * @return
+     * $amount is rounded to the nearest 0.00000001
+     *
+     * @return string Transaction ID
      */
     public function sendfrom($account, $address, $amount, $minconf = 1, $comment = null, $commentto = null);
 
     /**
-     * @return
+     * @return string Transaction ID
      */
     public function sendmany($fromaccount, array $addresses, $minconf = 1, $comment = null);
 
@@ -309,12 +380,16 @@ interface BitcoindInterface
     public function sendrawtransaction($hex);
 
     /**
-     * @return
+     * Send $amount to $address. $amount is rounded to nearest 0.00000001
+     *
+     * @return string txid
      */
     public function sendtoaddress($address, $amount, $comment = null, $commentto = null);
 
     /**
-     * @return
+     * Sets the account associated with the given address
+     *
+     * @return boolean
      */
     public function setaccount($address, $account);
 
@@ -329,7 +404,11 @@ interface BitcoindInterface
     public function settxfee($amount);
 
     /**
-     * @return
+     * Sign a message with the private key of an address
+     *
+     * @param string $address
+     * @param string $message
+     * @return string
      */
     public function signmessage($address, $message);
 
@@ -350,27 +429,46 @@ interface BitcoindInterface
     public function submitblock();
 
     /**
-     * @return
+     * Returns information about $address
+     *
+     * @return array
      */
     public function validateaddress($address);
 
     /**
+     * Verify a signed message
+     *
+     * @param string $address
+     * @param string $signature
+     * @param string $message
      * @return
      */
     public function verifymessage($address, $signature, $message);
 
     /**
-     * @return
+     * Removes the wallet encryption key from memory, locking the wallet.
+     * After calling this method, you will need to call walletpassphrase again
+     * before being able to call any methods which require the wallet to be unlocked.
+     *
+     * @return boolean
      */
     public function walletlock();
 
     /**
-     * @return
+     * Stores the wallet decryption key in memory for $timeout seconds.
+     * Will return true if successful or false on error
+     *
+     * @param string $passphrase
+     * @param integer $timeout
+     * @return boolean
      */
     public function walletpassphrase($passphrase, $timeout);
 
     /**
-     * @return
+     * Change the wallet passphrase from $oldpassphrase to $newpassphrase and
+     * will return true if successful or false if there was an error
+     *
+     * @return boolean
      */
     public function walletpassphrasechange($oldpassphrase, $newpassphrase);
 

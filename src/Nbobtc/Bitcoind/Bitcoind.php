@@ -55,9 +55,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function createmultisig()
+    public function createmultisig($nrequired, array $keys)
     {
-        $response = $this->sendRequest('createmultisig');
+        $response = $this->sendRequest('createmultisig', array($nrequired, $keys));
         return $response;
     }
 
