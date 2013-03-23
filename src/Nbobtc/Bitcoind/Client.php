@@ -5,7 +5,7 @@ namespace Nbobtc\Bitcoind;
 /**
  * @author Joshua Estes
  */ 
-class Client
+class Client implements ClientInterface
 {
 
     /**
@@ -50,11 +50,11 @@ class Client
 
         $json = json_encode(array('method' => $method, 'params' => $params, 'id' => $id));
         curl_setopt_array($ch, array(
-                CURLOPT_POST           => true,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_HTTPHEADER     => array('Content-type: application/json'),
-                CURLOPT_POSTFIELDS     => $json,
-            ));
+            CURLOPT_POST           => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER     => array('Content-type: application/json'),
+            CURLOPT_POSTFIELDS     => $json,
+        ));
         $response = curl_exec($ch);
         curl_close($ch);
 
