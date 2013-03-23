@@ -40,7 +40,7 @@ class Client implements ClientInterface
      */
     public function execute($method, $params = null, $id = null)
     {
-        $ch  = curl_init($this->dsn);
+        $ch = curl_init($this->dsn);
 
         if (null === $params || "" == $params) {
             $params = array();
