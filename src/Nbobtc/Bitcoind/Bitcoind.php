@@ -483,15 +483,14 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function move($fromaccount, $toaccount, $amount, $minconf = 1, $comment = null, $commentto = null)
+    public function move($fromaccount, $toaccount, $amount, $minconf = 1, $comment = null)
     {
         $response = $this->sendRequest('move', array(
-            $fromaccount,
-            $toaccount,
-            $amount,
-            $minconf,
-            $comment,
-            $commentto,
+            (string) $fromaccount,
+            (string) $toaccount,
+            (float) $amount,
+            (integer) $minconf,
+            (string) $comment,
         ));
         return $response->result;
     }
@@ -504,7 +503,7 @@ class Bitcoind implements BitcoindInterface
         $response = $this->sendRequest('sendfrom', array(
             $account,
             $address,
-            $amount,
+            (float) $amount,
             $minconf,
             $comment,
             $commentto,

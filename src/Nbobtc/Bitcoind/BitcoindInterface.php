@@ -360,7 +360,7 @@ interface BitcoindInterface
      *
      * @return boolean
      */
-    public function move($fromaccount, $toaccount, $amount, $minconf = 1, $comment = null, $commentto = null);
+    public function move($fromaccount, $toaccount, $amount, $minconf = 1, $comment = null);
 
     /**
      * $amount is rounded to the nearest 0.00000001
