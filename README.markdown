@@ -22,7 +22,7 @@ To use the project you need to just create a new instance of the class.
 
     <?php
 
-    use Nbobtc\Bitcoind\Bitciond;
+    use Nbobtc\Bitcoind\Bitcoind;
     use Nbobtc\Bitcoind\Client;
 
     $bitcoind = new Bitcoind(new Client('https://username:password@localhost:18332'));
