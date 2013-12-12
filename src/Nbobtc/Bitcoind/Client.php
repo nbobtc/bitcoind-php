@@ -42,9 +42,9 @@ class Client implements ClientInterface
     {
         $ch = curl_init($this->dsn);
 
-        if (null === $params || "" == $params) {
+        if (null === $params || "" === $params) {
             $params = array();
-        } elseif (!empty($params) && !is_array($params)) {
+        } elseif (!is_array($params)) {
             $params = array($params);
         }
 
