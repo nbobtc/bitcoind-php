@@ -2,8 +2,6 @@
 
 namespace Nbobtc\Bitcoind;
 
-use Nbobtc\Bitcoind\ClientInterface;
-
 /**
  * @author Joshua Estes
  */
@@ -67,9 +65,15 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function createrawtransaction()
+    public function createrawtransaction($txs,$addresses)
     {
-        $response = $this->sendRequest('createrawtransaction');
+        if(!is_array($txs)){
+            $txs = json_decode($txs);
+        }
+        if(!is_array($addresses)){
+            $addresses = json_decode($addresses);
+        }
+        $response = $this->sendRequest('createrawtransaction',array($txs,$addresses));
         return $response->result;
     }
 
