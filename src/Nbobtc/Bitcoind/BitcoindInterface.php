@@ -47,7 +47,7 @@ interface BitcoindInterface
     /**
      * @TODO
      */
-    public function createrawtransaction();
+    public function createrawtransaction($txs,$addresses);
 
     /**
      * @param string $hex
