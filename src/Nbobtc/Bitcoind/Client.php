@@ -56,10 +56,15 @@ class Client implements ClientInterface
             CURLOPT_POSTFIELDS     => $json,
         ));
         $response = curl_exec($ch);
+        $status = curl_getinfo($ch);
         curl_close($ch);
 
         if (false === $response) {
             throw new \Exception('The server is not available.');
+        }
+
+        if ($status['http_code'] != 200) {
+            throw new \Exception('The server status code is '.$status['http_code'].'.');
         }
 
         $stdClass = json_decode($response);
