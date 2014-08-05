@@ -362,9 +362,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function importprivkey($privkey, $label = null)
+    public function importprivkey($privkey, $label = null, $rescan = true)
     {
-        $response = $this->sendRequest('importprivkey', array($privkey, (string) $label));
+        $response = $this->sendRequest('importprivkey', array($privkey, (string) $label, (bool) $rescan));
         return $response->result;
     }
 
