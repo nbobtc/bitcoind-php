@@ -67,9 +67,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function createrawtransaction()
+    public function createrawtransaction(array $transactions, $addresses)
     {
-        $response = $this->sendRequest('createrawtransaction');
+        $response = $this->sendRequest('createrawtransaction', array($transactions, $addresses));
         return $response->result;
     }
 
@@ -139,9 +139,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function getblock($hash)
+    public function getblock($hash, $verbose = true)
     {
-        $response = $this->sendRequest('getblock', $hash);
+        $response = $this->sendRequest('getblock', array($hash, $verbose));
         return $response->result;
     }
 
@@ -166,9 +166,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function getblocktemplate()
+    public function getblocktemplate($options = null)
     {
-        $response = $this->sendRequest('getblocktemplate');
+        $response = $this->sendRequest('getblocktemplate', $options);
         return $response->result;
     }
 
@@ -290,9 +290,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function getrawmempool()
+    public function getrawmempool($verbose = false)
     {
-        $response = $this->sendRequest('getrawmempool');
+        $response = $this->sendRequest('getrawmempool', $verbose);
         return $response->result;
     }
 
@@ -335,9 +335,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function gettxout()
+    public function gettxout($txid, $n, $includemempool = true)
     {
-        $response = $this->sendRequest('gettxout');
+        $response = $this->sendRequest('gettxout', array($txid, $n, $includemempool));
         return $response->result;
     }
 
@@ -464,9 +464,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function listunspent($minconf = 1, $maxconf = 999999)
+    public function listunspent($minconf = 1, $maxconf = 999999, array $addresses = array())
     {
-        $response = $this->sendRequest('listunspent', array($minconf, $maxconf));
+        $response = $this->sendRequest('listunspent', array($minconf, $maxconf, array()));
         return $response->result;
     }
 
@@ -528,9 +528,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function sendrawtransaction($hex)
+    public function sendrawtransaction($hex, $allowhighfees = false)
     {
-        $response = $this->sendRequest('sendrawtransaction', $hex);
+        $response = $this->sendRequest('sendrawtransaction', array($hex, $allowhighfees));
         return $response->result;
     }
 
@@ -587,9 +587,9 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
-    public function signrawtransaction($hex, $txinfo, $keys)
+    public function signrawtransaction($hex, array $txinfo = array(), array $keys = array(), $sighashtype = 'ALL')
     {
-        $response = $this->sendRequest('signrawtransaction', array($hex, $txinfo, $keys));
+        $response = $this->sendRequest('signrawtransaction', array($hex, $txinfo, $keys, $sighashtype));
         return $response->result;
     }
 
