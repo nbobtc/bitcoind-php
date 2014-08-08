@@ -45,9 +45,13 @@ interface BitcoindInterface
     public function createmultisig($nrequired, array $keys);
 
     /**
-     * @TODO
+     * Create a transaction spending the given inputs and sending to the given addresses.
+     *
+     * @param array $transactions
+     * @param mixed $addresses
+     * @return string Hex encoded raw transaction.
      */
-    public function createrawtransaction();
+    public function createrawtransaction(array $transactions, $addresses);
 
     /**
      * @param string $hex
@@ -109,24 +113,41 @@ interface BitcoindInterface
      * @param string $hash
      * @return
      */
-    public function getblock($hash);
 
     /**
-     * @return integer
+     * Returns information about a block.
+     *
+     * @param string $hash The block hash
+     * @param boolean $verbose
+     * @return mixed
+     */
+    public function getblock($hash, $verbose = true);
+
+    /**
+     * Returns the number of blocks in the longest block chain.
+     *
+     * @return integer The current block count
      */
     public function getblockcount();
 
     /**
-     * @param integer $index
-     * @return string
+     * Returns hash of block in best-block-chain at index provided.
+     *
+     * @param integer $index The block index
+     * @return string The block hash
      */
     public function getblockhash($index);
 
     /**
-     * @TODO
+     * Returns block template for miners
+     *
+     * See:
+     * https://github.com/bitcoin/bips/blob/master/bip-0022.mediawiki
+     *
+     * @param mixed $options
      * @return
      */
-    public function getblocktemplate();
+    public function getblocktemplate($options = null);
 
     /**
      * Returns the total number of peers that are connected
@@ -197,11 +218,16 @@ interface BitcoindInterface
     public function getpeerinfo();
 
     /**
+     * Returns all transactions in the memory pool.
+     *
+     * @param boolean $verbose
      * @return
      */
-    public function getrawmempool();
+    public function getrawmempool($verbose = false);
 
     /**
+     * Returns either raw transaction or information about a transaction.
+     *
      * @param string $txid
      * @param boolean $verbose
      * @return
@@ -237,13 +263,19 @@ interface BitcoindInterface
     public function gettransaction($txid);
 
     /**
-     * @TODO
+     * Returns details about an unspent transaction output.
+     *
+     * @param string $txid The transaction id
+     * @param integer $n Vout number
+     * @param boolean $includemempool Whether to include the memory pool
      * @return
      */
-    public function gettxout();
+    public function gettxout($txid, $n, $includemempool = true);
 
     /**
-     * @TODO
+     * Returns statistics about the unspent transaction output set.
+     * Note this call may take some time.
+     *
      * @return
      */
     public function gettxoutsetinfo();
@@ -344,9 +376,14 @@ interface BitcoindInterface
     public function listtransactions($account = null, $count = 10, $from = 0);
 
     /**
-     * @return
+     * Returns array of unspent transaction outputs
+     *
+     * @param int $minconf The minimum confirmations to filter
+     * @param int $maxconf The maximum confirmations to filter
+     * @param array $addresses An array of bitcoin addresses to filter
+     * @return array Unspent transaction outputs
      */
-    public function listunspent($minconf = 1, $maxconf = 999999);
+    public function listunspent($minconf = 1, $maxconf = 999999, array $addresses = array());
 
     /**
      * Updates list of temporarily unspendable outputs.
@@ -375,9 +412,13 @@ interface BitcoindInterface
     public function sendmany($fromaccount, array $addresses, $minconf = 1, $comment = null);
 
     /**
-     * @return
+     * Submits raw transaction to local node and network.
+     *
+     * @param string $hex The hex string of the raw transaction
+     * @param boolean $allowhighfees Allow high fees
+     * @return string The transaction hash
      */
-    public function sendrawtransaction($hex);
+    public function sendrawtransaction($hex, $allowhighfees = false);
 
     /**
      * Send $amount to $address. $amount is rounded to nearest 0.00000001
@@ -399,7 +440,10 @@ interface BitcoindInterface
     public function setgenerate($generate, $genproclimit = -1);
 
     /**
-     * @return
+     * Set the transaction fee per 1000 byte.
+     *
+     * @param float $amount The transaction fee
+     * @return boolean Returns true, if successful
      */
     public function settxfee($amount);
 
@@ -413,9 +457,15 @@ interface BitcoindInterface
     public function signmessage($address, $message);
 
     /**
+     * Sign inputs of raw transaction.
+     *
+     * @param string $hex The hex string of the raw transaction to sign
+     * @param array $txinfo An array of previous dependent transaction outputs
+     * @param array $keys An array of base58-encoded private keys for signing
+     * @param string $sighashtype The signature hash type.
      * @return
      */
-    public function signrawtransaction($hex, $txinfo, $keys);
+    public function signrawtransaction($hex, array $txinfo = array(), array $keys = array(), $sighashtype = 'ALL');
 
     /**
      * @return
