@@ -51,6 +51,12 @@ like so:
 Docs are output into the `docs/` directory. You can use php's command line server
 or view them another way.
 
+# Donate
+
+Consider a donation [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D](bitcoin:16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D).
+
+Thanks.
+
 # License (MIT)
 
 Copyright (C) 2012-2014 Joshua Estes
