@@ -3,7 +3,7 @@
     "homepage": "https://github.com/nbobtc/bitcoind-php",
     "type": "library",
     "description": "PHP Wrapper for a bitcoind daemon",
-    "keywords": ["bitcoin", "bitcoind"],
+    "keywords": ["bitcoin", "bitcoind", "bitcoins"],
     "license": "MIT",
     "authors": [
         {
