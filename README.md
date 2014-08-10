@@ -14,7 +14,7 @@ can also view more info about this on [packagist](https://packagist.org/packages
 
 Add this to the `requires` in your `composer.json` file.
 
-    "nbobtc/bitcoind-php": "1.0.*@dev"
+    "nbobtc/bitcoind-php": "~1.0"
 
 # Usage
 
