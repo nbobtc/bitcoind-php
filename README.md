@@ -53,7 +53,7 @@ or view them another way.
 
 # Donate
 
-Consider a donation [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D](bitcoin:16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D).
+Consider a donation [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D](bitcoin:16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D)
 
 Thanks.
 
