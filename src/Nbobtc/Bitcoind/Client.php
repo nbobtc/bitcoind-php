@@ -4,7 +4,7 @@ namespace Nbobtc\Bitcoind;
 
 /**
  * @author Joshua Estes
- */ 
+ */
 class Client implements ClientInterface
 {
 
@@ -64,7 +64,7 @@ class Client implements ClientInterface
         }
 
         if ($status['http_code'] != 200) {
-           if ($response AND ($json = json_decode($response, true))) {
+            if ($response && ($json = json_decode($response, true))) {
                 throw new \Exception($json['error']['message'], $json['error']['code']);
             }
             throw new \Exception('The server status code is '.$status['http_code'].'.');
@@ -78,5 +78,4 @@ class Client implements ClientInterface
 
         return $stdClass;
     }
-
 }

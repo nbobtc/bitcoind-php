@@ -521,5 +521,4 @@ interface BitcoindInterface
      * @return boolean
      */
     public function walletpassphrasechange($oldpassphrase, $newpassphrase);
-
 }

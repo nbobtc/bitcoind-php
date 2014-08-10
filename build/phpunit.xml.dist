@@ -2,7 +2,7 @@
 <phpunit
     backupGlobals="false"
     backupStaticAttributes="false"
-    bootstrap="vendor/autoload.php"
+    bootstrap="../vendor/autoload.php"
     colors="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
@@ -17,17 +17,20 @@
 
     <testsuites>
         <testsuite name="Bitcoind Test Suite">
-            <directory>./Tests/Nbobtc/</directory>
+            <directory>../Tests/Nbobtc/</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src/Nbobtc/</directory>
+            <directory>../src/Nbobtc/</directory>
             <exclude>
-                <directory>./Tests/</directory>
+                <directory>../Tests/</directory>
             </exclude>
         </whitelist>
     </filter>
 
+    <logging>
+        <log type="coverage-html" target="docs/code-coverage" charset="UTF-8" />
+    </logging>
 </phpunit>

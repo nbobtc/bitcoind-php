@@ -30,6 +30,10 @@
     },
     "require-dev": {
         "phpunit/phpunit": "*",
+        "phing/phing": "*",
         "sami/sami": "*"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }

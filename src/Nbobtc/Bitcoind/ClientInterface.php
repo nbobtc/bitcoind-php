@@ -8,6 +8,12 @@ namespace Nbobtc\Bitcoind;
 interface ClientInterface
 {
 
+    /**
+     * @param
+     * @param
+     * @param
+     *
+     * @return
+     */
     public function execute($method, $params = null, $id = null);
-
 }

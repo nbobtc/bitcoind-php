@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="nbobtc/bitcoind-php" default="phpunit">
+    <target name="build:docs:api"
+        description="Generates API Documentation">
+        <exec executable="${project.basedir}/bin/sami.php" passthru="true">
+            <arg value="update" />
+            <arg value="${project.basedir}/build/sami.php" />
+        </exec>
+    </target>
+
+    <target name="phpunit"
+        description="Runs phpunit">
+        <exec executable="${project.basedir}/bin/phpunit" passthru="true">
+            <arg value="-c" />
+            <arg value="build/" />
+        </exec>
+    </target>
+</project>

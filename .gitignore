@@ -1,5 +1,6 @@
 bin/
-cache/
-docs/
+build/
+!build/sami.php
+!build/phpunit.xml.php
 vendor/
 composer.lock

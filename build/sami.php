@@ -12,9 +12,10 @@ use Symfony\Component\Finder\Finder;
 $iterator = Finder::create()
     ->files()
     ->name('*.php')
-    ->in(__DIR__ . '/src');
+    ->in(__DIR__ . '/../src');
 
 return new Sami($iterator, array(
-    'title' => 'nbobtc/bitcoind-php API Docs',
-    'build_dir' => __DIR__ . '/docs',
+    'title'     => 'nbobtc/bitcoind-php API Docs',
+    'build_dir' => __DIR__ . '/api-docs',
+    'cache_dir' => __DIR__ . '/cache/api-docs',
 ));
