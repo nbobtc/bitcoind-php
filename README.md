@@ -1,7 +1,7 @@
 nbobtc/bitcoind-php
 ===================
 
-[![Build Status](https://travis-ci.org/nbobtc/bitcoind-php.png?branch=master)](https://travis-ci.org/nbobtc/bitcoind-php)
+[![Build Status](https://travis-ci.org/nbobtc/bitcoind-php.png?branch=master)](https://travis-ci.org/nbobtc/bitcoind-php) [![Latest Stable Version](https://poser.pugx.org/nbobtc/bitcoind-php/v/stable.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![Total Downloads](https://poser.pugx.org/nbobtc/bitcoind-php/downloads.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![Latest Unstable Version](https://poser.pugx.org/nbobtc/bitcoind-php/v/unstable.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![License](https://poser.pugx.org/nbobtc/bitcoind-php/license.svg)](https://packagist.org/packages/nbobtc/bitcoind-php)
 
 This project is a wrapper for a bitcoind daemon. This project is still
 being worked on and the interface may change a little until I get something
