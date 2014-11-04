@@ -54,6 +54,8 @@ class Client implements ClientInterface
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER     => array('Content-type: application/json'),
             CURLOPT_POSTFIELDS     => $json,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_TIMEOUT        => 60,
         ));
         $response = curl_exec($ch);
         $status = curl_getinfo($ch);
