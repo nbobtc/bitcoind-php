@@ -12,13 +12,20 @@ class Client implements ClientInterface
      * @var string
      */
     protected $dsn;
+    
+    /**
+     * @var string
+     */
+    protected $cacert;
 
     /**
      * @param string|null $dsn
+     * @param string|null $cert The file path to a certificate you'd like to use for SSL verification
      */
-    public function __construct($dsn = null)
+    public function __construct($dsn = null, $cacert = null)
     {
         $this->dsn = $dsn;
+        $this->cacert = $cacert;
     }
 
     /**
@@ -28,6 +35,16 @@ class Client implements ClientInterface
     public function setDsn($dsn)
     {
         $this->dsn = $dsn;
+        return $this;
+    }
+    
+    /**
+     * @param string $cacert
+     * @return Client
+     */
+    public function setCacert($cacert)
+    {
+        $this->cacert = $cacert;
         return $this;
     }
 
@@ -57,6 +74,9 @@ class Client implements ClientInterface
             CURLOPT_CONNECTTIMEOUT => 10,
             CURLOPT_TIMEOUT        => 60,
         ));
+        
+        if($this->cacert) curl_setopt($ch, CURLOPT_CAINFO, $this->cacert);
+        
         $response = curl_exec($ch);
         $status = curl_getinfo($ch);
         curl_close($ch);
