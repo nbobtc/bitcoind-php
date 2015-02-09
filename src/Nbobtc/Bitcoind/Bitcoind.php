@@ -16,7 +16,7 @@ class Bitcoind implements BitcoindInterface
     /**
      * @param ClientInterface $client
      */
-    public function __construct(ClientInterface $client = null)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
