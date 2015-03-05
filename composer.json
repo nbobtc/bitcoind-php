@@ -12,26 +12,25 @@
     ],
     "support": {
         "issues": "https://github.com/nbobtc/bitcoind-php/issues",
-        "wiki": "https://github.com/nbobtc/bitcoind-php/wiki",
         "source": "https://github.com/nbobtc/bitcoind-php"
     },
     "autoload": {
-        "psr-0": { "Nbobtc": "src/" }
+        "psr-4": { "Nbobtc\\": "src/Nbobtc" }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.2.x-dev"
+            "dev-1.x": "1.2.x-dev",
+            "dev-2.x": "2.0.x-dev"
         }
     },
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "lib-curl": "*"
+        "lib-curl": "*",
+        "psr/log": "~1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "phing/phing": "*",
-        "sami/sami": "*"
+        "phpunit/phpunit": "4.5@stable",
+        "monolog/monolog": "1.13@stable"
     },
     "config": {
         "bin-dir": "bin"
