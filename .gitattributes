@@ -1,8 +1,2 @@
-bin/ export-ignore
-cache/ export-ignore
-docs/ export-ignore
-Tests/ export-ignore
-vendor/ export-ignore
-composer.lock export-ignore
+test/ export-ignore
 phpunit.xml.dist export-ignore
-sami.php export-ignore
