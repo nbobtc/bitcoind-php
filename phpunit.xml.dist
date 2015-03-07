@@ -12,18 +12,17 @@
     stopOnFailure="false"
     stopOnIncomplete="false"
     stopOnSkipped="false"
-    verbose="false"
->
+    verbose="false">
 
     <testsuites>
-        <testsuite name="Bitcoind Test Suite">
-            <directory>test/Nbobtc/</directory>
+        <testsuite name="Nbobtc Bitcoind Test Suite">
+            <directory>test/Nbobtc/Tests/Component/Bitcoind</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>src/Nbobtc/</directory>
+            <directory>src/Nbobtc/Component/Bitcoind</directory>
             <exclude>
                 <directory>test/</directory>
             </exclude>
