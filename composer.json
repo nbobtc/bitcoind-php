@@ -19,8 +19,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-1.x": "1.2.x-dev",
-            "dev-2.x": "2.0.x-dev"
+            "dev-1.x": "1.x-dev",
+            "dev-2.x": "2.x-dev"
         }
     },
     "require": {

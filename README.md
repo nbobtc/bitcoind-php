@@ -16,29 +16,27 @@ can also view more info about this on [packagist](https://packagist.org/packages
 $ composer.phar require "nbobtc/bitcoind-php:~2.0@dev"
 ```
 
-# Usage
+# Simple Usage Example
 
 ```php
 <?php
 
-use Nbobtc\Component\Bitcoind\Command\GetInfoCommand;
+use Nbobtc\Component\Bitcoind\Command\Command;
 use Nbobtc\Component\Bitcoind\Client;
 
 $client  = new Client('https://username:password@localhost:18332');
-$command = new GetInfoCommand();
-$command->setClient($client);
+$command = new Command($client);
+$command->setMethod('getinfo');
 
 $result = $command->getArrayResult();
 ```
 
 # Commands
 
-## GetInfoCommand
 
 # Cookbook
 
 ## Using Blockchain.info
-
 
 # Testing
 
