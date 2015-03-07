@@ -18,18 +18,29 @@ $ composer.phar require "nbobtc/bitcoind-php:~2.0@dev"
 
 # Usage
 
-To use the project you need to just create a new instance of the class.
-
 ```php
 <?php
 
-use Nbobtc\Bitcoind\Bitcoind;
-use Nbobtc\Bitcoind\Client;
+use Nbobtc\Component\Bitcoind\Command\GetInfoCommand;
+use Nbobtc\Component\Bitcoind\Client;
 
-$bitcoind = new Bitcoind(new Client('https://username:password@localhost:18332'));
+$client  = new Client('https://username:password@localhost:18332');
+$command = new GetInfoCommand();
+$command->setClient($client);
+
+$result = $command->getArrayResult();
 ```
 
-# Tests
+# Commands
+
+## GetInfoCommand
+
+# Cookbook
+
+## Using Blockchain.info
+
+
+# Testing
 
 To run the tests you need to install the development packages using composer
 

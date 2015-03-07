@@ -3,17 +3,16 @@
 namespace Nbobtc\Bitcoind;
 
 /**
- * @author Joshua Estes
  */
 interface ClientInterface
 {
 
     /**
-     * @param
-     * @param
-     * @param
+     * @param string $method
+     * @param string $params
+     * @param string $id
      *
-     * @return
+     * @return mixed
      */
     public function execute($method, $params = null, $id = null);
 }

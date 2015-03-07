@@ -3,16 +3,39 @@
 namespace Nbobtc\Bitcoind;
 
 /**
- * @author Joshua Estes
  */
 class Client implements ClientInterface
 {
+    /**
+     * @var string
+     */
+    protected $schema;
+
+    /**
+     * @var string
+     */
+    protected $username;
+
+    /**
+     * @var string
+     */
+    protected $password;
+
+    /**
+     * @var string
+     */
+    protected $host;
+
+    /**
+     * @var string
+     */
+    protected $port;
 
     /**
      * @var string
      */
     protected $dsn;
-    
+
     /**
      * @var string
      */
@@ -24,20 +47,27 @@ class Client implements ClientInterface
      */
     public function __construct($dsn = null, $cacert = null)
     {
-        $this->dsn = $dsn;
-        $this->cacert = $cacert;
+        if (null !== $dsn) {
+            $this->setDsn($dsn);
+        }
+
+        if (null !== $cacert) {
+            $this->setCacert($cacert);
+        }
     }
 
     /**
      * @param string $dsn
-     * @return Client
+     * @return self
      */
     public function setDsn($dsn)
     {
         $this->dsn = $dsn;
+        $uri = parse_url($dsn);
+
         return $this;
     }
-    
+
     /**
      * @param string $cacert
      * @return Client
@@ -74,11 +104,13 @@ class Client implements ClientInterface
             CURLOPT_CONNECTTIMEOUT => 10,
             CURLOPT_TIMEOUT        => 60,
         ));
-        
-        if($this->cacert) curl_setopt($ch, CURLOPT_CAINFO, $this->cacert);
-        
+
+        if ($this->cacert) {
+            curl_setopt($ch, CURLOPT_CAINFO, $this->cacert);
+        }
+
         $response = curl_exec($ch);
-        $status = curl_getinfo($ch);
+        $status   = curl_getinfo($ch);
         curl_close($ch);
 
         if (false === $response) {
