@@ -24,7 +24,6 @@
             "2.x-dev": "2.0.x-dev"
         }
     },
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "lib-curl": "*"
