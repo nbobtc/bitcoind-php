@@ -31,7 +31,9 @@
     "require-dev": {
         "phpunit/phpunit": "*",
         "phing/phing": "*",
-        "sami/sami": "*"
+        "sami/sami": "*",
+        "symfony/yaml": ">= 2.1.0 <= 2.6.5",
+        "nikic/php-parser": ">= 1.0.0 <= 1.1.0"
     },
     "config": {
         "bin-dir": "bin"
