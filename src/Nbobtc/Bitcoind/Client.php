@@ -19,13 +19,25 @@ class Client implements ClientInterface
     protected $cacert;
 
     /**
-     * @param string|null $dsn
-     * @param string|null $cert The file path to a certificate you'd like to use for SSL verification
+     * @var bool
      */
-    public function __construct($dsn = null, $cacert = null)
+    protected $keepAlive;
+
+    /**
+     * @var resource|null
+     */
+    private $ch = null;
+
+    /**
+     * @param string|null   $dsn
+     * @param string|null   $cacert     The file path to a certificate you'd like to use for SSL verification
+     * @param bool          $keepAlive
+     */
+    public function __construct($dsn = null, $cacert = null, $keepAlive = false)
     {
         $this->dsn = $dsn;
         $this->cacert = $cacert;
+        $this->keepAlive = $keepAlive;
     }
 
     /**
@@ -49,15 +61,23 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param string       $method
+     * @param string $method
      * @param string|array $params
-     * @param string       $id
+     * @param string $id
+     * @return \StdClass
+     * @throws \Exception
      * @throw Exception
-     * @return StdClass
      */
     public function execute($method, $params = null, $id = null)
     {
-        $ch = curl_init($this->dsn);
+        if ($this->keepAlive) {
+            if (!$this->ch) {
+                $this->ch = curl_init($this->dsn);
+            }
+            $ch = $this->ch;
+        } else {
+            $ch = curl_init($this->dsn);
+        }
 
         if (null === $params || "" === $params) {
             $params = array();
@@ -69,7 +89,10 @@ class Client implements ClientInterface
         curl_setopt_array($ch, array(
             CURLOPT_POST           => true,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER     => array('Content-type: application/json'),
+            CURLOPT_HTTPHEADER     => array(
+                'Content-type: application/json',
+                $this->keepAlive ? 'Connection: keep-alive' : 'Connection: close',
+            ),
             CURLOPT_POSTFIELDS     => $json,
             CURLOPT_CONNECTTIMEOUT => 10,
             CURLOPT_TIMEOUT        => 60,
@@ -79,7 +102,10 @@ class Client implements ClientInterface
         
         $response = curl_exec($ch);
         $status = curl_getinfo($ch);
-        curl_close($ch);
+
+        if (!$this->keepAlive) {
+            curl_close($ch);
+        }
 
         if (false === $response) {
             throw new \Exception('The server is not available.');
