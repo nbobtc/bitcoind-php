@@ -8,8 +8,8 @@ php:
 
 branches:
     only:
-        - 1.x-dev
-        - 2.x-dev
+        - 1.x
+        - 2.x
 
 notifications:
     email: false
