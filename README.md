@@ -1,4 +1,4 @@
-nbobtc/bitcoind-php [![Travis branch](https://img.shields.io/travis/nbobtc/bitcoind-php/1.x.svg)](https://github.com/nbobtc/bitcoind-php/tree/1.x) [![Packagist Pre Release](https://img.shields.io/packagist/vpre/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![Packagist](https://img.shields.io/packagist/v/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php)
+nbobtc/bitcoind-php [![Travis branch](https://img.shields.io/travis/nbobtc/bitcoind-php/1.x.svg)](https://github.com/nbobtc/bitcoind-php/tree/1.x) [![Packagist](https://img.shields.io/packagist/v/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![Packagist Pre Release](https://img.shields.io/packagist/vpre/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php)
 ===================
 
 This project is a wrapper for a bitcoind daemon. This project is still being
