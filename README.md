@@ -1,4 +1,4 @@
-nbobtc/bitcoind-php [![Travis branch](https://img.shields.io/travis/nbobtc/bitcoind-php/master.svg)](https://github.com/nbobtc/bitcoind-php/tree/master) [![Packagist Pre Release](https://img.shields.io/packagist/vpre/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![Packagist](https://img.shields.io/packagist/v/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php)
+nbobtc/bitcoind-php [![Travis branch](https://img.shields.io/travis/nbobtc/bitcoind-php/1.x.svg)](https://github.com/nbobtc/bitcoind-php/tree/1.x) [![Packagist Pre Release](https://img.shields.io/packagist/vpre/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![Packagist](https://img.shields.io/packagist/v/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php)
 ===================
 
 This project is a wrapper for a bitcoind daemon. This project is still being
@@ -63,7 +63,7 @@ Consider a donation [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]
 
 Thanks.
 
-## License (MIT) [![Packagist](https://img.shields.io/packagist/l/nbobtc/bitcoind-php.svg)](https://github.com/nbobtc/bitcoind-php/blob/master/LICENSE)
+## License (MIT) [![Packagist](https://img.shields.io/packagist/l/nbobtc/bitcoind-php.svg)](https://github.com/nbobtc/bitcoind-php/blob/1.x/LICENSE)
 
 Copyright (C) 2012-2014 Joshua Estes
 
@@ -86,7 +86,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [Composer]: https://getcomposer.org/
 [Packagist]: https://packagist.org/packages/nbobtc/bitcoind-php
-[BitcoindInterface]: https://github.com/nbobtc/bitcoind-php/blob/master/src/Nbobtc/Bitcoind/BitcoindInterface.php
-[CHANGELOG.md]: https://github.com/nbobtc/bitcoind-php/blob/master/CHANGELOG.md
-[CONTRIBUTING.md]: https://github.com/nbobtc/bitcoind-php/blob/master/CONTRIBUTING.md
+[BitcoindInterface]: https://github.com/nbobtc/bitcoind-php/blob/1.x/src/Nbobtc/Bitcoind/BitcoindInterface.php
+[CHANGELOG.md]: https://github.com/nbobtc/bitcoind-php/blob/1.x/CHANGELOG.md
+[CONTRIBUTING.md]: https://github.com/nbobtc/bitcoind-php/blob/1.x/CONTRIBUTING.md
 [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]: bitcoin:16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D
