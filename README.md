@@ -89,4 +89,4 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [BitcoindInterface]: https://github.com/nbobtc/bitcoind-php/blob/1.x/src/Nbobtc/Bitcoind/BitcoindInterface.php
 [CHANGELOG.md]: https://github.com/nbobtc/bitcoind-php/blob/1.x/CHANGELOG.md
 [CONTRIBUTING.md]: https://github.com/nbobtc/bitcoind-php/blob/1.x/CONTRIBUTING.md
-[16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]: bitcoin:16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D
+[16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]: bitcoin://16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D
