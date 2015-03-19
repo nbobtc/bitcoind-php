@@ -51,6 +51,14 @@ like so:
 Docs are output into the `docs/` directory. You can use php's command line server
 or view them another way.
 
+# Change log
+
+See [CHANGELOG.md]
+
+# Contributing
+
+See [CONTRIBUTING.md]
+
 # Donate
 
 Consider a donation [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D](bitcoin:16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D)
@@ -77,3 +85,6 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[CHANGELOG.md]: https://github.com/nbobtc/bitcoind-php/blob/master/CHANGELOG.md
+[CONTRIBUTING.md]: https://github.com/nbobtc/bitcoind-php/blob/master/CONTRIBUTING.md
