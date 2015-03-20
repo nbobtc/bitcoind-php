@@ -1,9 +1,21 @@
 language: php
+
 php:
+    - 7
+    - 5.6
     - 5.5
     - 5.4
+
+branches:
+    only:
+        - 1.x
+        - 2.x
+
+notifications:
+    email: false
 
 install:
     - composer install --dev
 
-script: php bin/phing phpunit
+script:
+    - php bin/phing phpunit
