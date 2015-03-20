@@ -1,16 +1,23 @@
 <?php
+/**
+ */
 
 namespace Nbobtc\Command;
 
+use Nbobtc\Http\ClientInterface;
+
+/**
+ */
 class Command implements CommandInterface
 {
     protected $client;
     protected $parameters;
     protected $method;
+    protected $id;
 
     public function __construct($client)
     {
-        $this->client = $client;
+        $this->client     = $client;
         $this->parameters = array();
     }
 
