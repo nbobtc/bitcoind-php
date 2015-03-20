@@ -1,18 +1,19 @@
 <?php
+/**
+ */
 
 namespace Nbobtc\Http;
+
+use Nbobtc\Command\CommandInterface;
 
 /**
  */
 interface ClientInterface
 {
-
     /**
-     * @param string $method
-     * @param string $params
-     * @param string $id
-     *
-     * @return mixed
+     * @params CommandInterface $command
+     * @return Response
+     * @throws \Exception
      */
-    public function execute($method, $params = null, $id = null);
+    public function sendCommand(CommandInterface $command);
 }

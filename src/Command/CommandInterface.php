@@ -14,17 +14,12 @@ interface CommandInterface
     public function getId();
 
     /**
-     * @param ClientInterface $client
-     */
-    public function setClient($client);
-
-    /**
      * @return array
      */
-    public function getArrayResult();
+    public function getParameters();
 
     /**
-     * @return \stdClass
+     * @return string
      */
-    public function getObjectResult();
+    public function getMethod();
 }
