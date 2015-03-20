@@ -1,4 +1,4 @@
 bin/
-build/
+docs/code-coverage/
 vendor/
 composer.lock

@@ -24,8 +24,11 @@ class Command implements CommandInterface
     protected $id;
 
     /**
+     * @param string $method
+     * @param array  $parameters
+     * @param string $id
      */
-    public function __construct($method, array $parameters = array(), $id = null)
+    public function __construct($method = null, array $parameters = array(), $id = null)
     {
         $this->method     = $method;
         $this->parameters = $parameters;
@@ -54,5 +57,35 @@ class Command implements CommandInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withMethod($method)
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withParameters(array $parameters)
+    {
+        $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 }
