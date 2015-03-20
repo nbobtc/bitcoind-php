@@ -1,6 +1,6 @@
 <?php
 
-namespace Nbobtc\Component\Bitcoind\Command;
+namespace Nbobtc\Command;
 
 class Command implements CommandInterface
 {

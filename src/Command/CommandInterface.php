@@ -2,7 +2,7 @@
 /**
  */
 
-namespace Nbobtc\Component\Bitcoind\Command;
+namespace Nbobtc\Command;
 
 /**
  */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nbobtc\Component\Bitcoind;
+namespace Nbobtc\Http;
 
 /**
  */
