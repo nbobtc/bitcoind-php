@@ -18,4 +18,4 @@ install:
     - composer install --dev
 
 script:
-    - php bin/phing phpunit
+    - php bin/phpunit
