@@ -1,10 +1,16 @@
 <?php
 /**
+ * Generic Command
+ *
+ * @author Joshua Estes
+ * @copyright 2012-2015 Joshua Estes
+ * @license https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE MIT
  */
 
 namespace Nbobtc\Command;
 
 /**
+ * @since 2.0.0
  */
 class Command implements CommandInterface
 {
@@ -24,6 +30,7 @@ class Command implements CommandInterface
     protected $id;
 
     /**
+     * @since 2.0.0
      * @param string $method
      * @param array  $parameters
      * @param string $id
@@ -36,6 +43,7 @@ class Command implements CommandInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getMethod()
@@ -44,6 +52,7 @@ class Command implements CommandInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getParameters()
@@ -52,6 +61,7 @@ class Command implements CommandInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getId()
@@ -60,6 +70,7 @@ class Command implements CommandInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withMethod($method)
@@ -70,6 +81,7 @@ class Command implements CommandInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withParameters(array $parameters)
@@ -80,6 +92,7 @@ class Command implements CommandInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withId($id)

@@ -1,4 +1,5 @@
 bin/
+docs/api/
 docs/code-coverage/
 vendor/
 composer.lock
