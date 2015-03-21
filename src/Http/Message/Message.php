@@ -12,14 +12,14 @@ use Psr\Http\Message\StreamableInterface;
 class Message implements MessageInterface
 {
     /**
-     * @var float
+     * @var string
      */
     protected $version;
 
     /**
      * @var array
      */
-    protected $headers;
+    protected $headers = array();
 
     /**
      * @var string
@@ -57,7 +57,13 @@ class Message implements MessageInterface
      */
     public function hasHeader($name)
     {
-        return isset($this->headers[$name]);
+        foreach ($this->headers as $header => $values) {
+            if (0 === strcasecmp($header, $name)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -65,8 +71,10 @@ class Message implements MessageInterface
      */
     public function getHeader($name)
     {
-        if ($this->hasHeader($name)) {
-            return $this->headers[$name];
+        foreach ($this->headers as $header => $values) {
+            if (0 === strcasecmp($header, $name)) {
+                return $this->headers[$header];
+            }
         }
 
         return null;
@@ -77,7 +85,11 @@ class Message implements MessageInterface
      */
     public function getHeaderLines($name)
     {
-        return $this->headers[$name];
+        if ($lines = $this->getHeader($name)) {
+            return $lines;
+        }
+
+        return array();
     }
 
     /**
@@ -85,7 +97,11 @@ class Message implements MessageInterface
      */
     public function withHeader($name, $value)
     {
-        $this->headers[$name] = $value;
+        if (is_array($value)) {
+            $this->headers[$name] = $value;
+        } else {
+            $this->headers[$name] = array($value);
+        }
 
         return $this;
     }
@@ -105,8 +121,10 @@ class Message implements MessageInterface
      */
     public function withoutHeader($name)
     {
-        if ($this->hasHeader($name)) {
-            unset($this->headers[$name]);
+        foreach ($this->headers as $header => $values) {
+            if (0 === strcasecmp($header, $name)) {
+                unset($this->headers[$header]);
+            }
         }
 
         return $this;

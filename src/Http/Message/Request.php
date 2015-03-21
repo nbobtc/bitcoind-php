@@ -6,16 +6,23 @@ namespace Nbobtc\Http\Message;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
+use Nbobtc\Http\Message\Uri;
 
 /**
  */
 class Request extends Message implements RequestInterface
 {
     /**
+     * @var string
+     */
+    const HTTP_POST = 'POST';
+
+    /**
      */
     protected $requestTarget;
 
     /**
+     * @var string
      */
     protected $method;
 
@@ -23,6 +30,17 @@ class Request extends Message implements RequestInterface
      * @var UriInterface
      */
     protected $uri;
+
+    public function __construct($uri = null, $method = self::HTTP_POST)
+    {
+        if ($uri instanceof \Psr\Http\Message\UriInterface) {
+            $this->uri = $uri;
+        } elseif (null !== $uri) {
+            $this->uri = new Uri($uri);
+        }
+
+        $this->method = $method;
+    }
 
     /**
      * {@inheritDoc}

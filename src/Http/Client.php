@@ -35,6 +35,7 @@ class Client implements ClientInterface
     public function __construct($dsn)
     {
         $this->request = new Request($dsn);
+        $this->request->withHeader('Content-Type', 'application/json');
     }
 
     /**
@@ -43,5 +44,29 @@ class Client implements ClientInterface
     public function sendCommand(CommandInterface $command)
     {
         $this->command = $command;
+    }
+
+    /**
+     * @return \Psr\Http\Message\RequestInterface
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @return \Nbobtc\Command\CommandInterface
+     */
+    public function getCommand()
+    {
+        return $this->command;
     }
 }
