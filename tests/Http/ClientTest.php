@@ -5,6 +5,7 @@
 namespace Tests\Nbobtc\Http;
 
 use Nbobtc\Http\Client;
+use Nbobtc\Command\Command;
 
 /**
  */
@@ -30,5 +31,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $client = new Client('https://username:password@localhost:18332');
         $client->getRequest()->withHeader('Connection', 'Keep-Alive');
+    }
+
+    public function testSendCommand()
+    {
+        $client   = new Client('https://username:password@localhost:18332');
+        $command  = new Command('gettransaction', array('transactionId'));
+        // Commented out because by default this uses curl
+        //$response = $client->sendCommand($command);
     }
 }

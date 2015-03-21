@@ -6,6 +6,7 @@ namespace Nbobtc\Http\Message;
 
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamableInterface;
+use Nbobtc\Http\Message\Streamable;
 
 /**
  */
@@ -135,6 +136,10 @@ class Message implements MessageInterface
      */
     public function getBody()
     {
+        if (null === $this->body) {
+            $this->body = new Streamable();
+        }
+
         return $this->body;
     }
 

@@ -46,6 +46,17 @@ class Client implements ClientInterface
      */
     public function sendCommand(CommandInterface $command)
     {
+        $this->request->getBody()->write(json_encode(
+            array(
+                'method' => $command->getMethod(),
+                'params' => $command->getParameters(),
+                'id'     => $command->getId(),
+            )
+        ));
+
+        $this->response = $this->driver->execute($this->request);
+
+        return $this->response;
     }
 
     public function withDriver(DriverInterface $driver)
