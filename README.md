@@ -27,18 +27,21 @@ Add this to the `requires` in your `composer.json` file.
 To use the project you need to just create a new instance of the class.
 
 ```php
-<?php
-
 $command = new \Nbobtc\Command\Command('getinfo');
 $client  = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
 
 /** @var \Nbobtc\Http\Message\Response */
 $response = $client->sendCommand($command);
+
+/** @var string */
+$contents = $response->getBody()->getContents();
 ```
 
-You are able to get the [Request], [Response], and [Command] objects back from
-the client with the correct getters: `getRequest()`, `getResponse()`, and
-`getCommand()`.
+You are able to get the [Request] and [Response] objects back from
+the client with the correct getters: `getRequest()` and `getResponse()`.
+
+You can also parse the response however you wish to do so since the result is
+returned to you as a string. See below for some ideas!
 
 ## Commands
 
@@ -57,6 +60,26 @@ $command = new Command('getinfo');
 The second argument MUST be in the same order as on the [Bitcoin API] wiki page.
 There is no need to assign the values any keys.
 
+## Curl Driver
+
+Drivers are meant to be used with the client for connecting to a bitcoind
+service. By default a `CurlDriver` is used. This provides you with some
+flexibility on setting this up custom for your own configuration.
+
+You can set various [cURL Options] by passing them into the function
+`addCurlOption($option, $value)`.
+
+Here's an example of how to configure and use the driver.
+
+```php
+$driver = new \Nbobtc\Http\Driver\CurlDriver();
+$driver
+    ->addCurlOption(CURLOPT_VERBOSE, true)
+    ->addCurlOption(CURLOPT_STDERR, '/var/logs/curl.err');
+```
+
+Feel free to take a look at the `CurlDriver` source code.
+
 ## How to enable a Keep-Alive
 
 This example shows how you are able to set the client up to [Persistent
@@ -69,15 +92,34 @@ $client->getRequest()->withHeader('Connection', 'Keep-Alive');
 
 ## How to set a CA Cert
 
+This library provides some wonderful flexibility that will allow you to
+configure the client to use your own CA Cert.
 
+```php
+$driver = new \Nbobtc\Http\Driver\CurlDriver();
+$driver->addCurlOption(CURLOPT_CAINFO, '/path/to/cert');
 
-## How to Configure to use Blockchain.info
+$client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
+$client->setDriver($driver);
+```
 
+## Convert Output to an Array
 
+Some like the arrays
 
-## How to Create Your Own Commands
+```php
+$response = $client->sendCommand($command);
+$output   = json_decode($response->getBody()->getContents(), true);
+```
 
+## Convert Output to a stdClass object
 
+Some like the objects
+
+```php
+$response = $client->sendCommand($command);
+$output   = json_decode($response->getBody()->getContents());
+```
 
 ## Tests
 
@@ -137,3 +179,4 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]: bitcoin://16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D
 [Bitcoin API]: https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list
 [Persistent Connection]: http://en.wikipedia.org/wiki/HTTP_persistent_connection
+[cURL Options]: http://php.net/manual/en/function.curl-setopt.php
