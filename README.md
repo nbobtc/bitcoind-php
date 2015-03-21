@@ -12,7 +12,7 @@ stable.
 You can install this library by using [Composer]. You can also view more info
 about this on [Packagist].
 
-Add this to the `requires` in your `composer.json` file.
+Add this to the `require` in your `composer.json` file.
 
 ```json
 {
@@ -76,6 +76,9 @@ $driver = new \Nbobtc\Http\Driver\CurlDriver();
 $driver
     ->addCurlOption(CURLOPT_VERBOSE, true)
     ->addCurlOption(CURLOPT_STDERR, '/var/logs/curl.err');
+
+$client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
+$client->setDriver($driver);
 ```
 
 Feel free to take a look at the `CurlDriver` source code.
