@@ -1,7 +1,7 @@
 nbobtc/bitcoind-php [![Travis branch](https://img.shields.io/travis/nbobtc/bitcoind-php/2.x.svg)](https://travis-ci.org/nbobtc/bitcoind-php) [![Packagist](https://img.shields.io/packagist/v/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php) [![Packagist Pre Release](https://img.shields.io/packagist/vpre/nbobtc/bitcoind-php.svg)](https://packagist.org/packages/nbobtc/bitcoind-php)
 ===================
 
-[![Code Climate](https://img.shields.io/codeclimate/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php) [![Code Climate](https://img.shields.io/codeclimate/coverage/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php)
+[![Code Climate](https://img.shields.io/codeclimate/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php) [![Code Climate](https://img.shields.io/codeclimate/coverage/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php) [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/c7af9182-f53b-4164-820d-46e7499252f3.svg)](https://insight.sensiolabs.com/projects/c7af9182-f53b-4164-820d-46e7499252f3)
 
 This project is a wrapper for a bitcoind daemon. This project is still being
 worked on and the interface may change a little until I get something more
