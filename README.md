@@ -151,12 +151,6 @@ See [CHANGELOG.md]
 
 See [CONTRIBUTING.md]
 
-## Donate
-
-Consider a donation [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]
-
-Thanks.
-
 ## License (MIT) [![Packagist](https://img.shields.io/packagist/l/nbobtc/bitcoind-php.svg)](https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE)
 
 Copyright (C) 2012-2014 Joshua Estes
@@ -182,7 +176,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [Packagist]: https://packagist.org/packages/nbobtc/bitcoind-php
 [CHANGELOG.md]: https://github.com/nbobtc/bitcoind-php/blob/2.x/CHANGELOG.md
 [CONTRIBUTING.md]: https://github.com/nbobtc/bitcoind-php/blob/2.x/CONTRIBUTING.md
-[16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]: bitcoin://16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D
 [Bitcoin API]: https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list
 [Persistent Connection]: http://en.wikipedia.org/wiki/HTTP_persistent_connection
 [cURL Options]: http://php.net/manual/en/function.curl-setopt.php
