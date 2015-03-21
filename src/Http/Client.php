@@ -6,34 +6,37 @@ namespace Nbobtc\Http;
 
 use Nbobtc\Http\Message\Request;
 use Nbobtc\Http\Message\Response;
-use Nbobtc\Http\Message\RequestInterface;
-use Nbobtc\Http\Message\ResponseInterface;
 use Nbobtc\Command\CommandInterface;
+use Nbobtc\Http\Driver\CurlDriver;
+use Nbobtc\Http\Driver\DriverInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  */
 class Client implements ClientInterface
 {
     /**
-     * @var RequestInterface
+     * @var \Psr\Http\Message\RequestInterface
      */
     protected $request;
 
     /**
-     * @var ResponseInterface
+     * @var \Psr\Http\Message\ResponseInterface
      */
     protected $response;
 
     /**
-     * @var CommandInterface
+     * @var \Nbobtc\Http\Driver\DriverInterface
      */
-    protected $command;
+    protected $driver;
 
     /**
      * @param string $dsn Data Source Name
      */
     public function __construct($dsn)
     {
+        $this->driver  = new CurlDriver();
         $this->request = new Request($dsn);
         $this->request->withHeader('Content-Type', 'application/json');
     }
@@ -43,7 +46,13 @@ class Client implements ClientInterface
      */
     public function sendCommand(CommandInterface $command)
     {
-        $this->command = $command;
+    }
+
+    public function withDriver(DriverInterface $driver)
+    {
+        $this->driver = $driver;
+
+        return $this;
     }
 
     /**
@@ -60,13 +69,5 @@ class Client implements ClientInterface
     public function getResponse()
     {
         return $this->response;
-    }
-
-    /**
-     * @return \Nbobtc\Command\CommandInterface
-     */
-    public function getCommand()
-    {
-        return $this->command;
     }
 }

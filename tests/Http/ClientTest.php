@@ -14,7 +14,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $client = new Client('https://username:password@localhost:18332');
         $this->assertNull($client->getResponse());
-        $this->assertNull($client->getCommand());
 
         $request = $client->getRequest();
         $this->assertInstanceOf('Psr\Http\Message\RequestInterface', $request);

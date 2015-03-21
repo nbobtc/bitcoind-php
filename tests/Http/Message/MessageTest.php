@@ -24,11 +24,13 @@ class MessageTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($message->getHeader('aint-got-time-for-headers'));
         $this->assertEmpty($message->getHeaderLines('sad-panda'));
 
+        $this->assertCount(0, $message->getHeaders());
         $this->assertInstanceOf('\Psr\Http\Message\MessageInterface', $message->withHeader('X-Header-Name', 'Test'));
+        $this->assertCount(1, $message->getHeaders());
         $this->assertInstanceOf('\Psr\Http\Message\MessageInterface', $message->withHeader('X-Header', array('a', 'b')));
         $this->assertTrue($message->hasHeader('x-HEADER-name'));
         $this->assertFalse($message->hasHeader('head-name'));
-        $this->assertCount(1, $message->getHeaders());
+        $this->assertCount(2, $message->getHeaders());
         $this->assertEquals(array('Test'), $message->getHeader('x-header-name'));
         $this->assertEquals(array('Test'), $message->getHeaderLines('x-header-name'));
     }

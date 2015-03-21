@@ -34,17 +34,38 @@ $client  = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
 
 /** @var \Nbobtc\Http\Message\Response */
 $response = $client->sendCommand($command);
-
-var_dump($response->getBody());
 ```
 
 You are able to get the [Request], [Response], and [Command] objects back from
 the client with the correct getters: `getRequest()`, `getResponse()`, and
 `getCommand()`.
 
+## Commands
+
+Commands are created in such a way that this will support any future updates the
+[Bitcoin API] by providing you with an easy class that sets all the required
+information.
+
+You are able to pass into the object the `method` and the `parameters` that are
+required. Here are a few examples:
+
+```php
+$command = new Command('getblock', array('000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f'));
+$command = new Command('getinfo');
+```
+
+The second argument MUST be in the same order as on the [Bitcoin API] wiki page.
+There is no need to assign the values any keys.
+
 ## How to enable a Keep-Alive
 
+This example shows how you are able to set the client up to [Persistent
+Connection].
 
+```php
+$client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
+$client->getRequest()->withHeader('Connection', 'Keep-Alive');
+```
 
 ## How to set a CA Cert
 
@@ -114,3 +135,5 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [CHANGELOG.md]: https://github.com/nbobtc/bitcoind-php/blob/2.x/CHANGELOG.md
 [CONTRIBUTING.md]: https://github.com/nbobtc/bitcoind-php/blob/2.x/CONTRIBUTING.md
 [16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D]: bitcoin://16yRSB46xMeWKfWtqcuqSVV7B2eSjkd92D
+[Bitcoin API]: https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list
+[Persistent Connection]: http://en.wikipedia.org/wiki/HTTP_persistent_connection
