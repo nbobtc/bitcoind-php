@@ -7,12 +7,15 @@ This project is a wrapper for a bitcoind daemon. This project is still being
 worked on and the interface may change a little until I get something more
 stable.
 
+> NOTE: This is version 2.x of this project. There is a more stable version of
+> this on the 1.x branch.
+
 ## Installation
 
 You can install this library by using [Composer]. You can also view more info
 about this on [Packagist].
 
-Add this to the `require` in your `composer.json` file.
+Add this to the `require` section in your `composer.json` file.
 
 ```json
 {
