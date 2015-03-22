@@ -21,4 +21,4 @@ Initial release of 2.x
 
 - 1.x Releases
 
-[unreleased]: https://github.com/nbobtc/bitcoind-php/compare/2d30e2f9ee617f44336581386cd0734613c7353d...2.0.0
+[2.0.0]: https://github.com/nbobtc/bitcoind-php/compare/2d30e2f9ee617f44336581386cd0734613c7353d...2.0.0
