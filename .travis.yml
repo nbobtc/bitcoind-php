@@ -10,6 +10,7 @@ branches:
     only:
         - 1.x
         - 2.x
+        - master
 
 notifications:
     email: false
