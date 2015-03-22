@@ -1,4 +1,5 @@
 bin/
+build/logs/
 docs/api/
 docs/code-coverage/
 vendor/

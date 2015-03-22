@@ -1,7 +1,5 @@
 <?php
 /**
- * Generic Command
- *
  * @author Joshua Estes
  * @copyright 2012-2015 Joshua Estes
  * @license https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE MIT
@@ -44,7 +42,7 @@ class Command implements CommandInterface
 
     /**
      * @since 2.0.0
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getMethod()
     {
@@ -53,7 +51,7 @@ class Command implements CommandInterface
 
     /**
      * @since 2.0.0
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getParameters()
     {
@@ -62,7 +60,7 @@ class Command implements CommandInterface
 
     /**
      * @since 2.0.0
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -71,7 +69,7 @@ class Command implements CommandInterface
 
     /**
      * @since 2.0.0
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function withMethod($method)
     {
@@ -82,18 +80,22 @@ class Command implements CommandInterface
 
     /**
      * @since 2.0.0
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function withParameters(array $parameters)
+    public function withParameters($parameters)
     {
-        $this->parameters = $parameters;
+        if (is_array($parameters)) {
+            $this->parameters = $parameters;
+        } else {
+            $this->parameters = array($parameters);
+        }
 
         return $this;
     }
 
     /**
      * @since 2.0.0
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function withId($id)
     {

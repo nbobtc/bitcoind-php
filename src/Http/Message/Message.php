@@ -1,5 +1,8 @@
 <?php
 /**
+ * @author Joshua Estes
+ * @copyright 2012-2015 Joshua Estes
+ * @license https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE MIT
  */
 
 namespace Nbobtc\Http\Message;
@@ -9,6 +12,7 @@ use Psr\Http\Message\StreamableInterface;
 use Nbobtc\Http\Message\Streamable;
 
 /**
+ * @since 2.0.0
  */
 class Message implements MessageInterface
 {

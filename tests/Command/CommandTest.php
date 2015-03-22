@@ -1,5 +1,8 @@
 <?php
 /**
+ * @author Joshua Estes
+ * @copyright 2012-2015 Joshua Estes
+ * @license https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE MIT
  */
 
 namespace Tests\Nbobtc\Command;
@@ -39,5 +42,18 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         return array(
             array('getinfo', array('one'), 1),
         );
+    }
+
+    public function testCommandWithParameters()
+    {
+        $command = new Command();
+        $this->assertEmpty($command->getParameters());
+        $command->withParameters('a');
+        $this->assertEquals(array('a'), $command->getParameters());
+
+        $command = new Command();
+        $this->assertEmpty($command->getParameters());
+        $command->withParameters(array('a'));
+        $this->assertEquals(array('a'), $command->getParameters());
     }
 }

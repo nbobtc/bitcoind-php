@@ -1,5 +1,8 @@
 <?php
 /**
+ * @author Joshua Estes
+ * @copyright 2012-2015 Joshua Estes
+ * @license https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE MIT
  */
 
 namespace Nbobtc\Http;
@@ -13,6 +16,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
+ * @since 2.0.0
  */
 class Client implements ClientInterface
 {
@@ -32,6 +36,7 @@ class Client implements ClientInterface
     protected $driver;
 
     /**
+     * @since 2.0.0
      * @param string $dsn Data Source Name
      */
     public function __construct($dsn)
@@ -42,7 +47,8 @@ class Client implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @since 2.0.0
+     * {@inheritdoc}
      */
     public function sendCommand(CommandInterface $command)
     {
@@ -59,6 +65,11 @@ class Client implements ClientInterface
         return $this->response;
     }
 
+    /**
+     * @since 2.0.0
+     * @param \Nbobtc\Http\Driver\DriverInterface $driver
+     * @return self
+     */
     public function withDriver(DriverInterface $driver)
     {
         $this->driver = $driver;
@@ -67,6 +78,7 @@ class Client implements ClientInterface
     }
 
     /**
+     * @since 2.0.0
      * @return \Psr\Http\Message\RequestInterface
      */
     public function getRequest()
@@ -75,6 +87,7 @@ class Client implements ClientInterface
     }
 
     /**
+     * @since 2.0.0
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function getResponse()

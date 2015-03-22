@@ -81,7 +81,7 @@ $driver
     ->addCurlOption(CURLOPT_STDERR, '/var/logs/curl.err');
 
 $client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
-$client->setDriver($driver);
+$client->withDriver($driver);
 ```
 
 Feel free to take a look at the `CurlDriver` source code.
@@ -106,7 +106,7 @@ $driver = new \Nbobtc\Http\Driver\CurlDriver();
 $driver->addCurlOption(CURLOPT_CAINFO, '/path/to/cert');
 
 $client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
-$client->setDriver($driver);
+$client->withDriver($driver);
 ```
 
 ## Convert Output to an Array
