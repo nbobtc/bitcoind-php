@@ -19,7 +19,7 @@ class Message implements MessageInterface
     /**
      * @var string
      */
-    protected $version;
+    protected $version = '1.1';
 
     /**
      * @var array
@@ -27,11 +27,12 @@ class Message implements MessageInterface
     protected $headers = array();
 
     /**
-     * @var string
+     * @var \Psr\Http\Message\StreamableInterface
      */
     protected $body;
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getProtocolVersion()
@@ -40,6 +41,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withProtocolVersion($version)
@@ -50,6 +52,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getHeaders()
@@ -58,6 +61,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function hasHeader($name)
@@ -72,6 +76,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getHeader($name)
@@ -86,6 +91,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getHeaderLines($name)
@@ -98,6 +104,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withHeader($name, $value)
@@ -112,6 +119,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withAddedHeader($name, $value)
@@ -122,6 +130,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withoutHeader($name)
@@ -136,6 +145,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getBody()
@@ -148,6 +158,7 @@ class Message implements MessageInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withBody(StreamableInterface $body)

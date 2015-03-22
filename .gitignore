@@ -4,3 +4,4 @@ docs/api/
 docs/code-coverage/
 vendor/
 composer.lock
+phpdoc.xml

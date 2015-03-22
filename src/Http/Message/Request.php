@@ -17,6 +17,8 @@ use Nbobtc\Http\Message\Uri;
 class Request extends Message implements RequestInterface
 {
     /**
+     * HTTP Methods
+     *
      * @var string
      */
     const HTTP_POST = 'POST';
@@ -35,6 +37,12 @@ class Request extends Message implements RequestInterface
      */
     protected $uri;
 
+    /**
+     * @since 2.0.0
+     * @param UriInterface|null $uri
+     * @param string            $method
+     * @throws \InvalidArgumentException
+     */
     public function __construct($uri = null, $method = self::HTTP_POST)
     {
         if ($uri instanceof \Psr\Http\Message\UriInterface) {
@@ -47,6 +55,7 @@ class Request extends Message implements RequestInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getRequestTarget()
@@ -55,6 +64,7 @@ class Request extends Message implements RequestInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withRequestTarget($requestTarget)
@@ -65,6 +75,7 @@ class Request extends Message implements RequestInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getMethod()
@@ -73,6 +84,7 @@ class Request extends Message implements RequestInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withMethod($method)
@@ -83,6 +95,7 @@ class Request extends Message implements RequestInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getUri()
@@ -91,6 +104,7 @@ class Request extends Message implements RequestInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withUri(UriInterface $uri)

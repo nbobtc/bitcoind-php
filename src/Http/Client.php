@@ -36,6 +36,15 @@ class Client implements ClientInterface
     protected $driver;
 
     /**
+     * Creates a new Client object
+     *
+     * Currently you MUST pass in a DSN so the client knows where to send
+     * commands to.
+     *
+     * ```php
+     * $client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
+     * ```
+     *
      * @since 2.0.0
      * @param string $dsn Data Source Name
      */
@@ -60,12 +69,15 @@ class Client implements ClientInterface
             )
         ));
 
+        /** @var \Psr\Http\Message\ResponseInterface */
         $this->response = $this->driver->execute($this->request);
 
         return $this->response;
     }
 
     /**
+     * Configures the Client to use a specific driver
+     *
      * @since 2.0.0
      * @param \Nbobtc\Http\Driver\DriverInterface $driver
      * @return self
@@ -78,6 +90,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Return the current Request object
+     *
      * @since 2.0.0
      * @return \Psr\Http\Message\RequestInterface
      */
@@ -87,6 +101,8 @@ class Client implements ClientInterface
     }
 
     /**
+     * Returns the current Response object
+     *
      * @since 2.0.0
      * @return \Psr\Http\Message\ResponseInterface
      */

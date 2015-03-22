@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>API Documentation</title>
+    <parser>
+        <target>docs/api/</target>
+    </parser>
+    <transformer>
+        <target>docs/api/</target>
+    </transformer>
+    <files>
+        <directory>src/</directory>
+    </files>
+    <logging>
+        <paths>
+            <default>build/logs/phpdoc.log</default>
+            <errors>build/logs/phpdoc.err</errors>
+        </paths>
+    </logging>
+</phpdoc>

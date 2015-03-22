@@ -60,6 +60,7 @@ class Uri implements UriInterface
     protected $fragment;
 
     /**
+     * @since 2.0.0
      * @param string $dsn
      */
     public function __construct($dsn = null)
@@ -70,6 +71,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function __toString()
@@ -85,6 +87,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getScheme()
@@ -93,6 +96,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getAuthority()
@@ -101,6 +105,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getUserInfo()
@@ -109,6 +114,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getHost()
@@ -117,6 +123,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getPort()
@@ -125,6 +132,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getPath()
@@ -133,6 +141,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getQuery()
@@ -141,6 +150,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function getFragment()
@@ -149,6 +159,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withScheme($scheme)
@@ -159,6 +170,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withUserInfo($user, $password = null)
@@ -170,6 +182,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withHost($host)
@@ -180,6 +193,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withPort($port)
@@ -190,6 +204,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withPath($path)
@@ -200,6 +215,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withQuery($query)
@@ -210,6 +226,7 @@ class Uri implements UriInterface
     }
 
     /**
+     * @since 2.0.0
      * {@inheritDoc}
      */
     public function withFragment($fragment)
@@ -220,10 +237,15 @@ class Uri implements UriInterface
     }
 
     /**
+     * Parse DSN
+     *
+     * @since 2.0.0
+     * @internal
      * @param string $dsn
      */
-    public function parseDsn($dsn)
+    protected function parseDsn($dsn)
     {
+        /** @var array */
         $components = parse_url($dsn);
 
         $this->withScheme($components['scheme']);

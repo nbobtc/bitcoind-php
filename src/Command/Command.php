@@ -28,16 +28,26 @@ class Command implements CommandInterface
     protected $id;
 
     /**
+     * Creates a new Command object
+     *
      * @since 2.0.0
-     * @param string $method
-     * @param array  $parameters
-     * @param string $id
+     * @param string     $method
+     * @param array|null $parameters
+     * @param string     $id
      */
-    public function __construct($method = null, array $parameters = array(), $id = null)
+    public function __construct($method = null, $parameters = null, $id = null)
     {
-        $this->method     = $method;
-        $this->parameters = $parameters;
-        $this->id         = $id;
+        if (null !== $method) {
+            $this->withMethod($method);
+        }
+
+        if (null !== $parameters) {
+            $this->withParameters($parameters);
+        }
+
+        if (null !== $id) {
+            $this->withId($id);
+        }
     }
 
     /**

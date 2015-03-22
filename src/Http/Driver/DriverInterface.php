@@ -15,6 +15,11 @@ use Psr\Http\Message\RequestInterface;
 interface DriverInterface
 {
     /**
+     * Sends Request to server and returns a response.
+     *
+     * This will throw an Exception if there was an error
+     *
+     * @since 2.0.0
      * @param \Psr\Http\Message\RequestInterface $request
      * @return \Psr\Http\Message\ResponseInterface;
      * @throws \Exception
