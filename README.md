@@ -83,11 +83,22 @@ Most commands in the [Bitcoin API] take one parameter. If it takes MORE than
 one, you must pass the parameters in as an array in the ORDER you find them on
 that page.
 
-## Curl Driver
+### Extending Commands
 
-Drivers are meant to be used with the client for connecting to a bitcoind
-service. By default a `CurlDriver` is used. This provides you with some
-flexibility on setting this up custom for your own configuration.
+If, for any reason, you need to extend a command, it MUST implement
+[CommandInterface]. You can find documentation within the interface on how to
+implement this.
+
+## Drivers
+
+Drivers are used by the ClientInterface for connecting to a bitcoind service and
+sending Requests. The return a Response. If you need to implement a new driver
+take a look at the [DriverInterface].
+
+### cURL Driver
+
+This is used by default and allows you a lot of options for customizing it to
+your needs.
 
 You can set various [cURL Options] by passing them into the function
 `addCurlOption($option, $value)`.
@@ -106,7 +117,9 @@ $client->withDriver($driver);
 
 Feel free to take a look at the `CurlDriver` source code.
 
-## How to enable a Keep-Alive ie Persistent Connection
+### Cookbook
+
+### How to enable a Keep-Alive ie Persistent Connection
 
 This example shows how you are able to set the client up to [Persistent
 Connection].
@@ -116,7 +129,7 @@ $client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
 $client->getRequest()->withHeader('Connection', 'Keep-Alive');
 ```
 
-## How to set a CA Cert
+### How to set a CA Cert
 
 This library provides some wonderful flexibility that will allow you to
 configure the client to use your own CA Cert.
@@ -129,7 +142,7 @@ $client = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
 $client->withDriver($driver);
 ```
 
-## Convert Output to an Array
+### How to Convert Output to an Array
 
 Some like the arrays
 
@@ -138,7 +151,7 @@ $response = $client->sendCommand($command);
 $output   = json_decode($response->getBody()->getContents(), true);
 ```
 
-## Convert Output to a stdClass object
+### How to Convert Output to a stdClass object
 
 Some like the objects
 
@@ -147,23 +160,14 @@ $response = $client->sendCommand($command);
 $output   = json_decode($response->getBody()->getContents());
 ```
 
-## Tests
+## Testing
 
-To run the tests you need to install the development packages using composer
+All testing is done using PHPUnit. You should be able to run `phpunit` in the
+root directory of this project (the directory where phpunit.xml.dist is located)
+and the tests will run.
 
-```bash
-php composer.phar install --dev
-```
-
-Once this is complete you can run phpunit
-
-```bash
-./bin/phpunit
-```
-
-## API Documentation
-
-@TODO - Complete section on making API Documentation
+If submitting a pull request or working on this library, please make sure that
+the tests will pass.
 
 ## Change log
 
@@ -180,14 +184,15 @@ Various ways on contributing to this project.
 
 ## Branching
 
-### 2.x
-
-Current production branch. All 2.x tags come off of this branch.
-
 ### master
 
 This is the latest and greatest, it should not be used an is considered
-development for testing new features and functionality.
+development for testing new features and functionality. This should NOT be used
+in a production environment.
+
+### 2.x
+
+Current production branch. All 2.x tags come off of this branch.
 
 ### 1.x
 
@@ -236,3 +241,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [Persistent Connection]: http://en.wikipedia.org/wiki/HTTP_persistent_connection
 [cURL Options]: http://php.net/manual/en/function.curl-setopt.php
 [Releases]: https://github.com/nbobtc/bitcoind-php/releases
+[CommandInterface]: https://github.com/nbobtc/bitcoind-php/blob/2.x/src/Command/CommandInterface.php
+[Request]: https://github.com/nbobtc/bitcoind-php/blob/2.x/src/Http/Message/Request.php
+[Response]: https://github.com/nbobtc/bitcoind-php/blob/2.x/src/Http/Message/Response.php
+[DriverInterface]: https://github.com/nbobtc/bitcoind-php/blob/2.x/src/Http/Driver/DriverInterface.php
