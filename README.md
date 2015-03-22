@@ -3,12 +3,12 @@ nbobtc/bitcoind-php [![Travis branch](https://img.shields.io/travis/nbobtc/bitco
 
 [![Code Climate](https://img.shields.io/codeclimate/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php) [![Code Climate](https://img.shields.io/codeclimate/coverage/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php) [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/c7af9182-f53b-4164-820d-46e7499252f3.svg)](https://insight.sensiolabs.com/projects/c7af9182-f53b-4164-820d-46e7499252f3)
 
-This project is a wrapper for a bitcoind daemon. This project is still being
-worked on and the interface may change a little until I get something more
-stable.
-
 > NOTE: This is version 2.x of this project. There is a more stable version of
 > this on the 1.x branch.
+
+This project is used to interact with a headless bitcoin program called
+bitcoind. It also contains various utility classes for working with Bitcoin as a
+PHP Developer.
 
 ## Installation
 
@@ -56,12 +56,32 @@ You are able to pass into the object the `method` and the `parameters` that are
 required. Here are a few examples:
 
 ```php
-$command = new Command('getblock', array('000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f'));
+// No Parameters
 $command = new Command('getinfo');
+
+// One Parameters
+$command = new Command('getblock', '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f');
+
+// Multiple Parameters
+$command = new Command('sendfrom', array('fromaccount', 'tobitcoinaddress', 'amount'));
 ```
 
 The second argument MUST be in the same order as on the [Bitcoin API] wiki page.
 There is no need to assign the values any keys.
+
+### Parameters
+
+Parameters are the second argument when creating a new Command. This argument
+can either be a string OR an array. For example, both of these are valid.
+
+```php
+$command = new Command('getblock', array('000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f'));
+$command = new Command('getblock', '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f');
+```
+
+Most commands in the [Bitcoin API] take one parameter. If it takes MORE than
+one, you must pass the parameters in as an array in the ORDER you find them on
+that page.
 
 ## Curl Driver
 
@@ -86,7 +106,7 @@ $client->withDriver($driver);
 
 Feel free to take a look at the `CurlDriver` source code.
 
-## How to enable a Keep-Alive
+## How to enable a Keep-Alive ie Persistent Connection
 
 This example shows how you are able to set the client up to [Persistent
 Connection].
@@ -143,13 +163,49 @@ Once this is complete you can run phpunit
 
 ## API Documentation
 
+@TODO - Complete section on making API Documentation
+
 ## Change log
 
-See [CHANGELOG.md]
+See [CHANGELOG.md].
+
+Contains information on releases such as what was added, changed, etc. It's good
+to look at to see what has changed from release to release.
 
 ## Contributing
 
-See [CONTRIBUTING.md]
+See [CONTRIBUTING.md].
+
+Various ways on contributing to this project.
+
+## Branching
+
+### 2.x
+
+Current production branch. All 2.x tags come off of this branch.
+
+### master
+
+This is the latest and greatest, it should not be used an is considered
+development for testing new features and functionality.
+
+### 1.x
+
+Deprecated, only used for bug fixes and for historical records.
+
+## Releasing
+
+You can find a complete list of [Releases] on GitHub.
+
+### Checklist
+
+[ ] Update `composer.json` with new minor or patch increase.
+[ ] Update [CHANGELOG.md] with release info and get rid of unreleased section.
+[ ] Make tag and push tag up.
+[ ] Copy section in [CHANGELOG.md] that pertains to the release and add info to
+    release docs on GitHub.
+[ ] Update [CHANGELOG.md] with unreleased section
+
 
 ## License (MIT) [![Packagist](https://img.shields.io/packagist/l/nbobtc/bitcoind-php.svg)](https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE)
 
@@ -179,3 +235,4 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [Bitcoin API]: https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_Calls_list
 [Persistent Connection]: http://en.wikipedia.org/wiki/HTTP_persistent_connection
 [cURL Options]: http://php.net/manual/en/function.curl-setopt.php
+[Releases]: https://github.com/nbobtc/bitcoind-php/releases
