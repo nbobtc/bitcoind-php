@@ -199,12 +199,12 @@ You can find a complete list of [Releases] on GitHub.
 
 ### Checklist
 
-[ ] Update `composer.json` with new minor or patch increase.
-[ ] Update [CHANGELOG.md] with release info and get rid of unreleased section.
-[ ] Make tag and push tag up.
-[ ] Copy section in [CHANGELOG.md] that pertains to the release and add info to
+- [ ] Update `composer.json` with new minor or patch increase.
+- [ ] Update [CHANGELOG.md] with release info and get rid of unreleased section.
+- [ ] Make tag and push tag up.
+- [ ] Copy section in [CHANGELOG.md] that pertains to the release and add info to
     release docs on GitHub.
-[ ] Update [CHANGELOG.md] with unreleased section
+- [ ] Update [CHANGELOG.md] with unreleased section
 
 
 ## License (MIT) [![Packagist](https://img.shields.io/packagist/l/nbobtc/bitcoind-php.svg)](https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE)
