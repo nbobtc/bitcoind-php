@@ -205,10 +205,11 @@ You can find a complete list of [Releases] on GitHub.
 ### Checklist
 
 - [ ] Update `composer.json` with new minor or patch increase.
+- [ ] Update `README.md` with installation instructions for new release.
 - [ ] Update [CHANGELOG.md] with release info and get rid of unreleased section.
 - [ ] Make tag and push tag up.
 - [ ] Copy section in [CHANGELOG.md] that pertains to the release and add info to
-    release docs on GitHub.
+      release docs on GitHub.
 - [ ] Update [CHANGELOG.md] with unreleased section
 
 
