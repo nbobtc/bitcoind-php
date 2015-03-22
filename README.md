@@ -117,7 +117,7 @@ $client->withDriver($driver);
 
 Feel free to take a look at the `CurlDriver` source code.
 
-### Cookbook
+## Cookbook
 
 ### How to enable a Keep-Alive ie Persistent Connection
 
