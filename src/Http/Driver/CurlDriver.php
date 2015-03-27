@@ -44,11 +44,14 @@ class CurlDriver implements DriverInterface
      */
     public function execute(RequestInterface $request)
     {
+        $uri = $request->getUri();
+
         if (null === self::$ch) {
             self::$ch = curl_init();
         }
 
-        $uri = $request->getUri();
+        curl_setopt_array(self::$ch, $this->getDefaultCurlOptions());
+
         curl_setopt(self::$ch, CURLOPT_URL, sprintf('%s://%s@%s', $uri->getScheme(), $uri->getUserInfo(), $uri->getHost()));
         curl_setopt(self::$ch, CURLOPT_PORT, $uri->getPort());
 
@@ -60,7 +63,7 @@ class CurlDriver implements DriverInterface
         curl_setopt(self::$ch, CURLOPT_POSTFIELDS, $request->getBody()->getContents());
 
         // Allows user to override any option, may cause errors
-        curl_setopt_array(self::$ch, array_merge($this->getDefaultCurlOptions(), $this->curlOptions));
+        curl_setopt_array(self::$ch, $this->curlOptions);
 
         /** @var string|false */
         $result = curl_exec(self::$ch);
