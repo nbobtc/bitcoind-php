@@ -40,5 +40,6 @@
     },
     "config": {
         "bin-dir": "bin"
-    }
+    },
+    "non-feature-branches": ["master"]
 }
