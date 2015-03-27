@@ -5,6 +5,10 @@ Change log
 
 ## [2.0.1] - 2015-03-27
 
+### Added
+
+- Added Vagrant file to setup and configure nodes
+
 ### Fixed
 
 - Small issue with the CurlDriver
