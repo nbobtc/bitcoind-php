@@ -3,6 +3,10 @@ Change log
 
 ## [unreleased]
 
+### Added
+
+- travis notifies irc channel #dspacelabs
+
 ## [2.0.2] - 2015-05-27
 
 ### Fixed

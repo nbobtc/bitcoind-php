@@ -14,6 +14,7 @@ branches:
 
 notifications:
     email: false
+    irc: "chat.freenode.net#dspacelabs"
 
 install:
     - composer require "codeclimate/php-test-reporter:*" -n
