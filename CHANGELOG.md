@@ -1,6 +1,8 @@
 Change log
 ==========
 
+## [unreleased]
+
 ## [2.0.2] - 2015-05-27
 
 ### Fixed
@@ -38,6 +40,7 @@ Initial release of 2.x
 
 - 1.x Releases
 
+[unreleased]: https://github.com/nbobtc/bitcoind-php/compare/2.0.2...2.x
 [2.0.2]: https://github.com/nbobtc/bitcoind-php/compare/2.0.1...2.x
 [2.0.1]: https://github.com/nbobtc/bitcoind-php/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/nbobtc/bitcoind-php/compare/2d30e2f9ee617f44336581386cd0734613c7353d...2.0.0
