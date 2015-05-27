@@ -92,7 +92,7 @@ class Message implements MessageInterface
 
     /**
      * @todo
-     * @since 2.1.0
+     * @since 2.0.2
      * {@inheritDoc}
      */
     public function getHeaderLine($name)
