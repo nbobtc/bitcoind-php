@@ -107,7 +107,7 @@ class Request extends Message implements RequestInterface
      * @since 2.0.0
      * {@inheritDoc}
      */
-    public function withUri(UriInterface $uri)
+    public function withUri(UriInterface $uri, $preserveHost = false)
     {
         $this->uri = $uri;
 

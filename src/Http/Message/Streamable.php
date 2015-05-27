@@ -7,7 +7,7 @@
 
 namespace Nbobtc\Http\Message;
 
-use Psr\Http\Message\StreamableInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Represents the body of the request/response
@@ -17,7 +17,7 @@ use Psr\Http\Message\StreamableInterface;
  *
  * @since 2.0.0
  */
-class Streamable implements StreamableInterface
+class Streamable implements StreamInterface
 {
     /**
      * @var string

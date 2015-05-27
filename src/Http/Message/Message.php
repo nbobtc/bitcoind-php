@@ -8,7 +8,7 @@
 namespace Nbobtc\Http\Message;
 
 use Psr\Http\Message\MessageInterface;
-use Psr\Http\Message\StreamableInterface;
+use Psr\Http\Message\StreamInterface;
 use Nbobtc\Http\Message\Streamable;
 
 /**
@@ -91,6 +91,16 @@ class Message implements MessageInterface
     }
 
     /**
+     * @todo
+     * @since 2.1.0
+     * {@inheritDoc}
+     */
+    public function getHeaderLine($name)
+    {
+        return '';
+    }
+
+    /**
      * @since 2.0.0
      * {@inheritDoc}
      */
@@ -161,7 +171,7 @@ class Message implements MessageInterface
      * @since 2.0.0
      * {@inheritDoc}
      */
-    public function withBody(StreamableInterface $body)
+    public function withBody(StreamInterface $body)
     {
         $this->body = $body;
 

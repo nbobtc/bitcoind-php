@@ -30,8 +30,8 @@
         "php": ">=5.4",
         "ext-curl": "*",
         "ext-json": "*",
-        "psr/log": "~1.0.0",
-        "psr/http-message": "~1.0@dev"
+        "psr/log": "~1.0",
+        "psr/http-message": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.5.0",
