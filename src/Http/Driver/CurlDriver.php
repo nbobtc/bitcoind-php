@@ -46,7 +46,7 @@ class CurlDriver implements DriverInterface
     {
         $uri = $request->getUri();
 
-        if (null === self::$ch) {
+        if (null === self::$ch || gettype(self::$ch) != 'curl') {
             self::$ch = curl_init();
         }
 
