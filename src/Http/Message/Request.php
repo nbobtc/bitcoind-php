@@ -11,6 +11,8 @@ use Zend\Diactoros\Request as DiactorosRequest;
 
 /**
  * @since 2.0.0
+ *
+ * @deprecated - please use a separate PSR-7 request implementation
  */
 class Request extends DiactorosRequest
 {

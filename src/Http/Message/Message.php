@@ -13,7 +13,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * @since 2.0.0
  *
- * @deprecated plaes don't rely on this class in future
+ * @deprecated - please use a separate PSR-7 message implementation
  */
 class Message implements MessageInterface
 {

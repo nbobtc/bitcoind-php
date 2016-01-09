@@ -16,6 +16,8 @@ use Zend\Diactoros\Stream;
  * this.
  *
  * @since 2.0.0
+ *
+ * @deprecated - please use a separate PSR-7 stream implementation
  */
 class Streamable extends Stream
 {

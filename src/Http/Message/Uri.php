@@ -11,6 +11,8 @@ use Zend\Diactoros\Uri as DiactorosUri;
 
 /**
  * @since 2.0.0
+ *
+ * @deprecated - please use a separate PSR-7 URI implementation
  */
 class Uri extends DiactorosUri
 {

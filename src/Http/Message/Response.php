@@ -11,6 +11,8 @@ use Zend\Diactoros\Response as DiactorosResponse;
 
 /**
  * @since 2.0.0
+ *
+ * @deprecated - please use a separate PSR-7 response implementation
  */
 class Response extends DiactorosResponse
 {
