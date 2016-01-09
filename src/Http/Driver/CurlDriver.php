@@ -9,7 +9,7 @@ namespace Nbobtc\Http\Driver;
 
 use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\RequestInterface;
-use Nbobtc\Http\Message\Response;
+use Zend\Diactoros\Response;
 
 /**
  * Uses cURL to send Requests
@@ -77,7 +77,9 @@ class CurlDriver implements DriverInterface
         }
 
         $response = new Response();
-        $response->withStatus($info['http_code']);
+
+        $response = $response->withStatus($info['http_code']);
+
         $response->getBody()->write($result);
 
         return $response;
