@@ -63,7 +63,7 @@ class Client implements ClientInterface
     {
         $request = clone $this->request;
 
-        $this->request->getBody()->write(json_encode(
+        $request->getBody()->write(json_encode(
             array(
                 'method' => $command->getMethod(),
                 'params' => $command->getParameters(),
@@ -72,7 +72,7 @@ class Client implements ClientInterface
         ));
 
         /** @var \Psr\Http\Message\ResponseInterface */
-        $this->response = $this->driver->execute($this->request);
+        $this->response = $this->driver->execute($request);
 
         return $this->response;
     }
