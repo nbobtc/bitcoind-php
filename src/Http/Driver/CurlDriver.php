@@ -60,7 +60,7 @@ class CurlDriver implements DriverInterface
             $headers[] = $header.': '.implode(', ', $values);
         }
         curl_setopt(self::$ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt(self::$ch, CURLOPT_POSTFIELDS, $request->getBody()->getContents());
+        curl_setopt(self::$ch, CURLOPT_POSTFIELDS, (string) $request->getBody());
 
         // Allows user to override any option, may cause errors
         curl_setopt_array(self::$ch, $this->curlOptions);
