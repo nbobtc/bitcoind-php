@@ -8,6 +8,7 @@
 namespace Tests\Nbobtc\Http\Message;
 
 use Nbobtc\Http\Message\Request;
+use Zend\Diactoros\Uri;
 
 /**
  */
@@ -15,16 +16,17 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 {
     public function testRequest()
     {
-        $mock = \Mockery::mock('\Psr\Http\Message\UriInterface');
+        $uri = new Uri('http://example.com/');
         $request = new Request();
-        $this->assertNull($request->getUri());
-        $this->assertEquals(Request::HTTP_POST, $request->getMethod());
-        $this->assertInstanceOf('\Psr\Http\Message\RequestInterface', $request->withUri($mock));
+        $this->assertInstanceOf('\Psr\Http\Message\UriInterface', $request->getUri());
+        $this->assertEquals('', $request->getMethod());
+        $this->assertInstanceOf('\Psr\Http\Message\RequestInterface', $request->withUri($uri));
 
-        $request = new Request($mock);
+        $request = new Request($uri);
         $this->assertInstanceOf('\Psr\Http\Message\UriInterface', $request->getUri());
 
-        $this->assertInstanceOf('\Psr\Http\Message\RequestInterface', $request->withMethod('GET'));
+        $request = $request->withMethod('GET');
+        $this->assertInstanceOf('\Psr\Http\Message\RequestInterface', $request);
         $this->assertEquals('GET', $request->getMethod());
     }
 }

@@ -14,8 +14,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testResponse()
     {
         $response = new Response();
-        $this->assertNull($response->getStatusCode());
-        $this->assertNull($response->getReasonPhrase());
+        $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
+        $this->assertSame('OK', $response->getReasonPhrase());
 
         $response->withStatus('200', 'OK');
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());

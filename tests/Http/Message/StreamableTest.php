@@ -19,7 +19,6 @@ class StreamableTest extends \PHPUnit_Framework_TestCase
         $size = strlen('satoshi');
         $this->assertEquals($size, $streamable->write('satoshi'));
         $this->assertEquals($size, $streamable->getSize());
-        $this->assertEquals('satoshi', $streamable->getContents());
         $this->assertEquals('satoshi', (string) $streamable);
     }
 }
