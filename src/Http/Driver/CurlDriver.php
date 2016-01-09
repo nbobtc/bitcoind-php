@@ -7,7 +7,6 @@
 
 namespace Nbobtc\Http\Driver;
 
-use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\RequestInterface;
 use Zend\Diactoros\Response;
 
