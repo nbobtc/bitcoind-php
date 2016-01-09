@@ -13,6 +13,8 @@ use Nbobtc\Http\Message\Streamable;
 
 /**
  * @since 2.0.0
+ *
+ * @deprecated plaes don't rely on this class in future
  */
 class Message implements MessageInterface
 {

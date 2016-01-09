@@ -7,57 +7,19 @@
 
 namespace Nbobtc\Http\Message;
 
-use Psr\Http\Message\ResponseInterface;
+use Zend\Diactoros\Response as DiactorosResponse;
 
 /**
  * @since 2.0.0
  */
-class Response extends Message implements ResponseInterface
+class Response extends DiactorosResponse
 {
     /**
      * Status Code Constants
      *
      * @var integer
+     *
+     * @deprecated - constant was kept just for BC compliance
      */
     const HTTP_OK = 200;
-
-    /**
-     * @var integer
-     */
-    protected $statusCode;
-
-    /**
-     * @var string
-     */
-    protected $reasonPhrase;
-
-    /**
-     * @since 2.0.0
-     * {@inheritdoc}
-     */
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritdoc}
-     */
-    public function withStatus($code, $reasonPhrase = null)
-    {
-        $this->statusCode   = (integer) $code;
-        $this->reasonPhrase = $reasonPhrase;
-
-        return $this;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritdoc}
-     */
-    public function getReasonPhrase()
-    {
-        return $this->reasonPhrase;
-    }
 }

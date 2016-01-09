@@ -10,107 +10,19 @@ namespace Nbobtc\Http\Message;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use Nbobtc\Http\Message\Uri;
+use Zend\Diactoros\Request as DiactorosRequest;
 
 /**
  * @since 2.0.0
  */
-class Request extends Message implements RequestInterface
+class Request extends DiactorosRequest
 {
     /**
      * HTTP Methods
      *
      * @var string
+     *
+     * @deprecated - constant was kept just for BC compliance
      */
     const HTTP_POST = 'POST';
-
-    /**
-     */
-    protected $requestTarget;
-
-    /**
-     * @var string
-     */
-    protected $method;
-
-    /**
-     * @var UriInterface
-     */
-    protected $uri;
-
-    /**
-     * @since 2.0.0
-     * @param UriInterface|null $uri
-     * @param string            $method
-     * @throws \InvalidArgumentException
-     */
-    public function __construct($uri = null, $method = self::HTTP_POST)
-    {
-        if ($uri instanceof \Psr\Http\Message\UriInterface) {
-            $this->uri = $uri;
-        } elseif (null !== $uri) {
-            $this->uri = new Uri($uri);
-        }
-
-        $this->method = $method;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritDoc}
-     */
-    public function getRequestTarget()
-    {
-        return $this->requestTarget;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritDoc}
-     */
-    public function withRequestTarget($requestTarget)
-    {
-        $this->requestTarget = $requestTarget;
-
-        return $this;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritDoc}
-     */
-    public function getMethod()
-    {
-        return $this->method;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritDoc}
-     */
-    public function withMethod($method)
-    {
-        $this->method = $method;
-
-        return $this;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritDoc}
-     */
-    public function getUri()
-    {
-        return $this->uri;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritDoc}
-     */
-    public function withUri(UriInterface $uri, $preserveHost = false)
-    {
-        $this->uri = $uri;
-
-        return $this;
-    }
 }
