@@ -9,7 +9,6 @@ namespace Nbobtc\Http\Message;
 
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
-use Nbobtc\Http\Message\Streamable;
 
 /**
  * @since 2.0.0
@@ -29,7 +28,7 @@ class Message implements MessageInterface
     protected $headers = array();
 
     /**
-     * @var \Psr\Http\Message\StreamableInterface
+     * @var \Psr\Http\Message\StreamInterface
      */
     protected $body;
 

@@ -7,9 +7,6 @@
 
 namespace Nbobtc\Http\Message;
 
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\UriInterface;
-use Nbobtc\Http\Message\Uri;
 use Zend\Diactoros\Request as DiactorosRequest;
 
 /**
