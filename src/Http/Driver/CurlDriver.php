@@ -7,9 +7,8 @@
 
 namespace Nbobtc\Http\Driver;
 
-use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\RequestInterface;
-use Nbobtc\Http\Message\Response;
+use Zend\Diactoros\Response;
 
 /**
  * Uses cURL to send Requests
@@ -60,7 +59,7 @@ class CurlDriver implements DriverInterface
             $headers[] = $header.': '.implode(', ', $values);
         }
         curl_setopt(self::$ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt(self::$ch, CURLOPT_POSTFIELDS, $request->getBody()->getContents());
+        curl_setopt(self::$ch, CURLOPT_POSTFIELDS, (string) $request->getBody());
 
         // Allows user to override any option, may cause errors
         curl_setopt_array(self::$ch, $this->curlOptions);
@@ -77,7 +76,9 @@ class CurlDriver implements DriverInterface
         }
 
         $response = new Response();
-        $response->withStatus($info['http_code']);
+
+        $response = $response->withStatus($info['http_code']);
+
         $response->getBody()->write($result);
 
         return $response;

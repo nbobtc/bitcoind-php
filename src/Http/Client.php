@@ -7,13 +7,12 @@
 
 namespace Nbobtc\Http;
 
-use Nbobtc\Http\Message\Request;
-use Nbobtc\Http\Message\Response;
 use Nbobtc\Command\CommandInterface;
 use Nbobtc\Http\Driver\CurlDriver;
 use Nbobtc\Http\Driver\DriverInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Zend\Diactoros\Request;
 
 /**
  * @since 2.0.0
@@ -47,12 +46,13 @@ class Client implements ClientInterface
      *
      * @since 2.0.0
      * @param string $dsn Data Source Name
+     *
+     * @throws \InvalidArgumentException
      */
     public function __construct($dsn)
     {
         $this->driver  = new CurlDriver();
-        $this->request = new Request($dsn);
-        $this->request->withHeader('Content-Type', 'application/json');
+        $this->request = (new Request($dsn))->withHeader('Content-Type', 'application/json');
     }
 
     /**
@@ -61,7 +61,9 @@ class Client implements ClientInterface
      */
     public function sendCommand(CommandInterface $command)
     {
-        $this->request->getBody()->write(json_encode(
+        $request = clone $this->request;
+
+        $request->getBody()->write(json_encode(
             array(
                 'method' => $command->getMethod(),
                 'params' => $command->getParameters(),
@@ -70,7 +72,7 @@ class Client implements ClientInterface
         ));
 
         /** @var \Psr\Http\Message\ResponseInterface */
-        $this->response = $this->driver->execute($this->request);
+        $this->response = $this->driver->execute($request);
 
         return $this->response;
     }

@@ -7,7 +7,7 @@
 
 namespace Nbobtc\Http\Message;
 
-use Psr\Http\Message\StreamInterface;
+use Zend\Diactoros\Stream;
 
 /**
  * Represents the body of the request/response
@@ -16,177 +16,13 @@ use Psr\Http\Message\StreamInterface;
  * this.
  *
  * @since 2.0.0
+ *
+ * @deprecated - please use a separate PSR-7 stream implementation
  */
-class Streamable implements StreamInterface
+class Streamable extends Stream
 {
-    /**
-     * @var string
-     */
-    protected $contents;
-
-    /**
-     * Size of contents in bytes
-     *
-     * @var integer
-     */
-    protected $size;
-
-    /**
-     * @since 2.0.0
-     * {@inheritdoc}
-     */
-    public function __toString()
+    public function __construct()
     {
-        return (string) $this->contents;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritdoc}
-     */
-    public function getSize()
-    {
-        return $this->size;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritdoc}
-     */
-    public function write($string)
-    {
-        $this->size     = strlen($string);
-        $this->contents = (string) $string;
-
-        return $this->size;
-    }
-
-    /**
-     * @since 2.0.0
-     * {@inheritdoc}
-     */
-    public function getContents()
-    {
-        return $this->contents;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function close()
-    {
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function detach()
-    {
-        return null;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function tell()
-    {
-        return false;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function eof()
-    {
-        return true;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function isSeekable()
-    {
-        return false;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function seek($offset, $whence = SEEK_SET)
-    {
-        return false;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function rewind()
-    {
-        return false;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function isWritable()
-    {
-        return true;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function isReadable()
-    {
-        return true;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function read($length)
-    {
-        return false;
-    }
-
-    /**
-     * @since 2.0.0
-     * @ignore
-     * @codeCoverageIgnore
-     * {@inheritdoc}
-     */
-    public function getMetadata($key = null)
-    {
-        return null;
+        parent::__construct('php://memory', 'wb+');
     }
 }
