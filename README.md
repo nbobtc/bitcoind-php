@@ -3,9 +3,6 @@ nbobtc/bitcoind-php [![Travis branch](https://img.shields.io/travis/nbobtc/bitco
 
 [![Code Climate](https://img.shields.io/codeclimate/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php) [![Code Climate](https://img.shields.io/codeclimate/coverage/github/nbobtc/bitcoind-php.svg)](https://codeclimate.com/github/nbobtc/bitcoind-php) [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/c7af9182-f53b-4164-820d-46e7499252f3.svg)](https://insight.sensiolabs.com/projects/c7af9182-f53b-4164-820d-46e7499252f3)
 
-> NOTE: This is version 2.x of this project. There is a more stable version of
-> this on the 1.x branch.
-
 This project is used to interact with a headless bitcoin program called
 bitcoind. It also contains various utility classes for working with Bitcoin as a
 PHP Developer.
