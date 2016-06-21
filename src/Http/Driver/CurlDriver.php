@@ -34,6 +34,7 @@ class CurlDriver implements DriverInterface
     {
         if (null !== self::$ch) {
             curl_close(self::$ch);
+            self::$ch = null; // Nulling to avoid calling curl_close again
         }
     }
 
