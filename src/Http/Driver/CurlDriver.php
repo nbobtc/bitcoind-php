@@ -81,6 +81,7 @@ class CurlDriver implements DriverInterface
         $response = $response->withStatus($info['http_code']);
 
         $response->getBody()->write($result);
+        $response->getBody()->rewind(); // empty getContents() without rewind()
 
         return $response;
     }
