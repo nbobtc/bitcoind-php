@@ -60,10 +60,9 @@ class Client implements ClientInterface
      * {@inheritdoc}
      */
     public function sendCommand(CommandInterface $command)
-    {
-        $request = clone $this->request;
-
-        $request->getBody()->write(json_encode(
+    {        
+        $body = new \Zend\Diactoros\Stream('php://temp', 'w+');
+        $body->write(json_encode(
             array(
                 'method' => $command->getMethod(),
                 'params' => $command->getParameters(),
@@ -71,6 +70,8 @@ class Client implements ClientInterface
             )
         ));
 
+        $request = $this->request->withBody($body);
+        
         /** @var \Psr\Http\Message\ResponseInterface */
         $this->response = $this->driver->execute($request);
 
