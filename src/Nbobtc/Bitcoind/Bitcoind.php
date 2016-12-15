@@ -468,7 +468,7 @@ class Bitcoind implements BitcoindInterface
      */
     public function listunspent($minconf = 1, $maxconf = 999999, array $addresses = array())
     {
-        $response = $this->client->execute('listunspent', array($minconf, $maxconf, array()));
+        $response = $this->client->execute('listunspent', array($minconf, $maxconf, $addresses));
         return $response->result;
     }
 
