@@ -17,7 +17,7 @@ Add this to the `require` section in your `composer.json` file.
 ```json
 {
     "require": {
-        "nbobtc/bitcoind-php": "~2.0"
+        "nbobtc/bitcoind-php": "~2.0@dev"
     }
 }
 ```
