@@ -201,24 +201,9 @@ Current production branch. All 2.x tags come off of this branch.
 
 Deprecated, only used for bug fixes and for historical records.
 
-## Releasing
-
-You can find a complete list of [Releases] on GitHub.
-
-### Checklist
-
-- [ ] Update `composer.json` with new minor or patch increase.
-- [ ] Update `README.md` with installation instructions for new release.
-- [ ] Update [CHANGELOG.md] with release info and get rid of unreleased section.
-- [ ] Make tag and push tag up.
-- [ ] Copy section in [CHANGELOG.md] that pertains to the release and add info to
-      release docs on GitHub.
-- [ ] Update [CHANGELOG.md] with unreleased section
-
-
 ## License (MIT) [![Packagist](https://img.shields.io/packagist/l/nbobtc/bitcoind-php.svg)](https://github.com/nbobtc/bitcoind-php/blob/2.x/LICENSE)
 
-Copyright (C) 2012-2014 Joshua Estes
+Copyright (C) 2012-2018 Joshua Estes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
