@@ -22,6 +22,12 @@ Add this to the `require` section in your `composer.json` file.
 }
 ```
 
+Or you can run
+
+```bash
+composer require nbobtc/bitcoind-php
+```
+
 ## Usage
 
 To use the project you need to just create a new instance of the class.
