@@ -12,18 +12,6 @@ PHP Developer.
 You can install this library by using [Composer]. You can also view more info
 about this on [Packagist].
 
-Add this to the `require` section in your `composer.json` file.
-
-```json
-{
-    "require": {
-        "nbobtc/bitcoind-php": "~2.0@dev"
-    }
-}
-```
-
-Or you can run
-
 ```bash
 composer require nbobtc/bitcoind-php
 ```
