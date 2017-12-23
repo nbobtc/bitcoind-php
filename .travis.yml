@@ -6,6 +6,11 @@ php:
     - 5.5
     - 5.4
 
+matrix:
+    include:
+        - php: 5.4
+          env: RPC_TEST=true BITCOIN_VERSION=0.15.0
+
 branches:
     only:
         - 1.x
@@ -17,11 +22,30 @@ notifications:
     irc: "chat.freenode.net#dspacelabs"
 
 install:
+    - |
+        if [ "$BITCOIN_VERSION" != "" ] && [ ! -e "${HOME}/bitcoin" ]; then
+            mkdir ${HOME}/bitcoin
+        fi
+    - |
+        if [ "$BITCOIN_VERSION" != "" ] && [ ! -e "${HOME}/bitcoin/bitcoin-$BITCOIN_VERSION" ]; then
+            cd ${HOME}/bitcoin &&
+            rm bitcoin-* -rf &&
+            wget https://bitcoin.org/bin/bitcoin-core-${BITCOIN_VERSION}/bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz &&
+            mv bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz bitcoin.tar.gz &&
+            tar xvf bitcoin.tar.gz &&
+            cd ${TRAVIS_BUILD_DIR}
+        else
+            echo "Had bitcoind"
+        fi
     - composer require "codeclimate/php-test-reporter:*" -n
     - composer install
 
 script:
     - php bin/phpunit
+    - |
+        if [ "$RPC_TEST" != "" ]; then
+            BITCOIND_PATH="$HOME/bitcoin/bitcoin-$BITCOIN_VERSION/bin/bitcoind" php bin/phpunit -c rpc.phpunit.xml
+        fi
 
 after_script:
     - bin/test-reporter --stdout > codeclimate.json
