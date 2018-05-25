@@ -21,6 +21,10 @@ composer require nbobtc/bitcoind-php
 To use the project you need to just create a new instance of the class.
 
 ```php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
 $command = new \Nbobtc\Command\Command('getinfo');
 $client  = new \Nbobtc\Http\Client('https://username:password@localhost:18332');
 
@@ -29,6 +33,9 @@ $response = $client->sendCommand($command);
 
 /** @var string */
 $contents = $response->getBody()->getContents();
+echo $contents;
+
+
 ```
 
 You are able to get the [Request] and [Response] objects back from
