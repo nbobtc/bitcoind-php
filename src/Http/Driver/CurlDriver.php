@@ -73,7 +73,8 @@ class CurlDriver implements DriverInterface
         $error = curl_error(self::$ch);
 
         if (!empty($error)) {
-            throw new \Exception($error);
+            // user can catch the error rather than return error 500 if your bitcoin server went down
+            return new \Exception($error);
         }
 
         $response = new Response();
