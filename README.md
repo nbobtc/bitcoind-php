@@ -9,8 +9,8 @@ PHP Developer.
 
 ## Installation
 
-You can install this library by using [Composer]. You can also view more info
-about this on [Packagist].
+You can install this library by using [Composer]. 
+You can also get more information about this on [Packagist].
 
 ```bash
 composer require nbobtc/bitcoind-php
